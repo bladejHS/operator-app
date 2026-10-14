@@ -6,8 +6,8 @@
  "start_url": "./#/azi",
  "scope": "./",
  "display": "standalone",
- "background_color": "#07080a",
- "theme_color": "#07080a",
+ "background_color": "#010102",
+ "theme_color": "#010102",
  "icons": [
   {
    "src": "icon-192.png",
