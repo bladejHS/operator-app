@@ -273,11 +273,18 @@ main.full{padding-left:0;padding-right:0}
 .md .key{margin:18px 0;padding:16px 18px;border-left:3px solid var(--ac);background:linear-gradient(90deg,var(--acd),transparent);border-radius:0 14px 14px 0;font-family:var(--fd);font-size:1.08rem;font-weight:560;color:var(--tx)}
 .md .note{margin:16px 0}
 .md .tool{margin:14px 0}
-.anim{margin:18px 0;border-radius:18px;background:radial-gradient(120% 100% at 50% 0%,#111417,#050607);border:1px solid var(--line);overflow:hidden}
+.anim{margin:18px 0;border-radius:18px;background:radial-gradient(120% 100% at 50% 0%,#111417,var(--surface-0));border:1px solid var(--line);overflow:hidden}
 .anim svg{width:100%;height:auto;max-height:340px}
-.anim .cap{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line);font-size:.86rem;color:var(--mu);min-height:46px}
+.anim .cap{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line);font-size:var(--fs-sm);color:var(--tx-muted);min-height:46px}
 .anim .cap b{color:var(--tx);font-weight:600}
 .anim .cap .sp{flex:1}
+/* Static illustrations (@ilust) */
+.ilust{margin:18px 0;border-radius:18px;background:var(--s1);border:1px solid var(--line);padding:18px;text-align:center}
+.ilust svg{width:100%;height:auto;max-height:380px;margin:0 auto}
+.ilust .cap{display:block;margin-top:10px;font-size:var(--fs-sm);color:var(--tx-muted);line-height:1.45}
+/* Inline lesson links (@link) */
+a.ilink{color:var(--ac);text-decoration:underline;text-decoration-color:rgba(91,227,142,.35);text-underline-offset:3px;transition:text-decoration-color var(--dur-fast) var(--ease)}
+a.ilink:hover{text-decoration-color:var(--ac)}
 .vchips{display:grid;gap:10px}
 .vchip{display:flex;gap:12px;align-items:center;padding:8px;border-radius:14px;background:var(--s1);border:1px solid var(--line);text-align:left;width:100%;transition:background .2s}
 .vchip:hover{background:var(--s2)}
@@ -1395,6 +1402,7 @@ Mulți fac invers: scot încet și apoi smucesc trăgaciul. Corect: elimini miș
 les({id:'t10',m:'tragere',t:'Diagnosticul erorilor',min:7,v:['RXiZZGNOlCw','5qwFMsPvNYs','UCI61PWg3kg','Gk6PqDx8LX4','c6laC5H6cqY','Ft1Eu-RCamw','YuCbNhH13F4'],
 q:[['Un dreptaci trage constant jos-stânga. Care NU e o cauză probabilă?',['„Mulsul” prizei','Împinsul trăgaciului','Lentila prea curată'],2,'Cauzele frecvente: mulsul, împinsul trăgaciului, punctul natural de ochire greșit.'],
    ['Cum se vindecă tresărirea?',['Mai mult foc real','Cartușe de exercițiu amestecate, o dată','Antrenament fără muniție până se formează un traseu nou'],2,'Capsa amestecată doar diagnostichează (ca termometrul). Vindecarea vine din dry training.']],b:`
+@anim diag
 Ținta îți arată **unde** au mers gloanțele, nu **de ce**. Ca la medic: tratezi pacientul, nu analiza. Tabelele „plăcintă” care îți spun cauza după poziția găurii sunt doar un punct de plecare. Cel mai bun instrument: **te filmezi**, încet, corectezi, refilmezi.
 
 ### Jos-stânga (la dreptaci; jos-dreapta la stângaci)
@@ -2037,6 +2045,7 @@ Iei priza perfectă, apoi duci mâna acolo unde ajunge natural — acolo e tocul
 `});
 
 les({id:'o2',m:'operatii',t:'Ochi–țeavă–țintă și pozițiile de pregătire',min:4,v:['ndLVmgFGvyY','t2qCwhjUigQ'],b:`
+@anim ready
 ### Ochi–țeavă–țintă
 Ochii, țeava și ținta stau pe aceeași linie cât mai mult timp. Capul sus. Orice mânuire (încărcare, incident, schimb) o faci într-o **„zonă de lucru”** din fața feței, nu cu capul în jos, în poală.
 
@@ -3657,6 +3666,8 @@ Pușca nu e un pistol mare. Are reguli proprii de angajare, mai ales la distanț
 les({id:'ge3',m:'gebr',t:'Tranziții rapide: pușcă → pistol',min:5,b:`
 În scenariile reale, uneori trebuie să treci de la arma lungă la pistol în fracțiuni de secundă.
 
+@anim trans
+
 ### Tehnica corectă
 1. **Lasă pușca să atârne.** Folosește sling-ul (cureaua). Nu o pune jos, nu o arunci.
 2. **Mișcarea simultană.** Mâna dreaptă merge spre pistol în timp ce mâna stângă eliberează pușca.
@@ -3884,6 +3895,7 @@ Staționarea e pericol. Într-un scenariu dinamic, trebuie să te miști **și**
 
 les({id:'tp5',m:'tps',t:'Reîncărcare tactică sub presiune',min:5,b:`
 Reîncărcarea în luptă nu e aceeași cu cea de la poligon. Stresul, întunericul și mișcarea schimbă totul.
+@anim reload
 
 ### Tipuri de reîncărcare
 - **Emergency reload.** Arma s-a oprit, încărcătorul e gol. Scoate-l, introdu altul, lovește slide release-ul. Totul într-o mișcare fluidă.
@@ -4347,6 +4359,132 @@ ANIMS.offset=(()=>{
   }};
 })();
 
+/* 032-anims-visual.js */
+/* Animații noi pentru modulele GEBR, TPS și OPERATII.
+Extinde ANIMS existent fără a modifica 030-anims.js sau 031-anims-carti.js. */
+
+/* ── tranziție pușcă → pistol (ge3) ── */
+ANIMS.trans={t:'Tranziție pușcă → pistol',steps:[
+{d:1800,c:'Poziția inițială: pușca la umăr, ținta angajată'},
+{d:1200,c:'Eliberarea puștii — sling-ul o preia'},
+{d:1400,c:'Mâna dreaptă coboară spre holster'},
+{d:1000,c:'Pistolul extras și orientat spre țintă'},
+{d:1600,c:'Confirmarea imaginii pe țintă cu pistolul'}
+],f(svg,i,p){
+const W=320,H=220;svg.setAttribute('viewBox','0 0 '+W+' '+H);
+const rifle='#8b95a0',pistol='#c9ced3',sling='#5be38e',skin='#c39a7c',target='#ff6b6b';
+const lerp=(a,b,t)=>a+(b-a)*t;
+const rP=[[60,90,0],[60,110,15],[70,130,30],[80,140,35],[80,140,35]];
+const pP=[[200,170,0],[190,160,-10],[170,140,-20],[140,110,-5],[130,100,0]];
+const hR=[[155,100],[160,115],[175,135],[165,145],[145,115]];
+const hL=[[70,95],[75,115],[85,130],[90,138],[90,138]];
+const ri=rP[i]||rP[4],pi=pP[i]||pP[4];
+const hr=hR[i]||hR[4],hl=hL[i]||hL[4];
+const ni=Math.min(i+1,4);
+const rx=lerp(ri[0],rP[ni][0],p),ry=lerp(ri[1],rP[ni][1],p),rr=lerp(ri[2],rP[ni][2],p);
+const px=lerp(pi[0],pP[ni][0],p),py=lerp(pi[1],pP[ni][1],p),pr=lerp(pi[2],pP[ni][2],p);
+const sOp=i>=1?Math.min(1,(i===1?p:1)):0;
+const glow=i>=4?'<circle cx="40" cy="80" r="'+(8+p*4)+'" fill="none" stroke="'+target+'" stroke-width="2" opacity="'+(.4+p*.4)+'"/>':'';
+svg.innerHTML='<rect width="'+W+'" height="'+H+'" fill="#0a0c0e" rx="12"/>'+
+'<circle cx="40" cy="80" r="18" fill="none" stroke="#3a3f45" stroke-width="2"/>'+
+'<circle cx="40" cy="80" r="8" fill="'+target+'" opacity=".3"/>'+glow+
+'<path d="M'+(rx+20)+' '+(ry-5)+' Q'+(rx+40)+' '+(ry+30)+' '+(rx+10)+' '+(ry+50)+'" fill="none" stroke="'+sling+'" stroke-width="2.5" opacity="'+sOp+'" stroke-linecap="round"/>'+
+'<g transform="translate('+rx+','+ry+') rotate('+rr+')"><rect x="-5" y="-4" width="80" height="8" rx="2" fill="'+rifle+'"/><rect x="70" y="-6" width="25" height="12" rx="2" fill="#6b747c"/><rect x="-15" y="-3" width="14" height="6" rx="1" fill="#5a6370"/></g>'+
+'<g transform="translate('+px+','+py+') rotate('+pr+')"><rect x="-4" y="-3" width="28" height="7" rx="1.5" fill="'+pistol+'"/><rect x="-4" y="3" width="10" height="14" rx="2" fill="#8b95a0"/></g>'+
+'<circle cx="'+hr[0]+'" cy="'+hr[1]+'" r="7" fill="'+skin+'" opacity=".8"/>'+
+'<circle cx="'+hl[0]+'" cy="'+hl[1]+'" r="7" fill="'+skin+'" opacity=".8"/>'+
+'<text x="'+(W-10)+'" y="'+(H-10)+'" text-anchor="end" font-size="11" fill="#6b747c">'+['Pușcă la umăr','Eliberare sling','Coborâre mână','Extragere pistol','Imagine confirmată'][i]+'</text>';
+}};
+
+/* ── reîncărcare tactică pistol (tp5) ── */
+ANIMS.reload={t:'Reîncărcare tactică sub presiune',steps:[
+{d:1200,c:'Arma în poziție de tragere, încărcător parțial consumat'},
+{d:1000,c:'Degetul mare apasă butonul de eliberare'},
+{d:1400,c:'Încărcătorul vechi coboară, mâna stângă prinde noul'},
+{d:1200,c:'Încărcătorul nou intră în magwell'},
+{d:800,c:'Confirmare: lovitură ușoară + verificare vizuală'},
+{d:1000,c:'Arma revine pe țintă, gata de foc'}
+],f(svg,i,p){
+const W=280,H=240;svg.setAttribute('viewBox','0 0 '+W+' '+H);
+const gun='#c9ced3',magOld='#8b6b4a',magNew='#5be38e',skin='#c39a7c';
+const lerp=(a,b,t)=>a+(b-a)*t;
+const mY=[130,138,170,145,132,130],mX=[120,120,115,120,120,120];
+const ni=Math.min(i+1,5);
+const my=lerp(mY[i],mY[ni],p),mx=lerp(mX[i],mX[ni],p);
+const gR=[0,5,12,8,3,0],gr=lerp(gR[i],gR[ni],p);
+const thY=i>=1&&i<=3?lerp(108,118,Math.min(p*2,1)):108;
+const lhY=i>=2&&i<=4?lerp(200,155,Math.min(p*1.5,1)):200;
+const mc=i>=3?magNew:magOld;
+const flash=i===4?'<rect x="105" y="125" width="30" height="40" rx="3" fill="'+magNew+'" opacity="'+(p*.3)+'"/>':'';
+svg.innerHTML='<rect width="'+W+'" height="'+H+'" fill="#0a0c0e" rx="12"/>'+
+'<g transform="translate(120,100) rotate('+gr+')"><rect x="-8" y="-6" width="55" height="14" rx="2" fill="'+gun+'"/><rect x="-8" y="6" width="20" height="28" rx="3" fill="#8b95a0"/><rect x="42" y="-8" width="8" height="4" rx="1" fill="#6b747c"/><path d="M2 8 Q8 22 18 8" fill="none" stroke="#6b747c" stroke-width="1.5"/></g>'+
+flash+
+'<rect x="'+(mx-6)+'" y="'+my+'" width="12" height="32" rx="2" fill="'+mc+'" opacity="'+(i===2?.4:1)+'"/>'+
+'<circle cx="112" cy="'+thY+'" r="6" fill="'+skin+'" opacity=".85"/>'+
+'<circle cx="108" cy="'+lhY+'" r="7" fill="'+skin+'" opacity="'+(i>=2?.85:.3)+'"/>'+
+'<text x="'+(W-10)+'" y="'+(H-10)+'" text-anchor="end" font-size="11" fill="#6b747c">'+['Poziție tragere','Eliberare mag','Scoate + prinde','Inserare mag','Confirmare','Gata de foc'][i]+'</text>';
+}};
+
+/* ── poziții de pregătire (o2) ── */
+ANIMS.ready={t:'Poziții de pregătire ale armei',steps:[
+{d:1800,c:'Low Ready: arma jos la 45°, siguranță maximă'},
+{d:1800,c:'High Ready: arma sus, țeava verticală, tranziție rapidă'},
+{d:1800,c:'Compressed Ready: arma la piept, profil minim'},
+{d:1800,c:'Port Arms: diagonală, mișcare lungă, control total'}
+],f(svg,i,p){
+const W=300,H=240;svg.setAttribute('viewBox','0 0 '+W+' '+H);
+const gun='#c9ced3',body='#59626b',accent='#5be38e';
+const st=[{gx:160,gy:170,gr:45,lb:'Low Ready'},{gx:150,gy:80,gr:-85,lb:'High Ready'},{gx:140,gy:110,gr:-10,lb:'Compressed'},{gx:130,gy:100,gr:-50,lb:'Port Arms'}];
+const s=st[i]||st[0],ns=st[Math.min(i+1,3)];
+const lerp=(a,b,t)=>a+(b-a)*t;
+const gx=lerp(s.gx,ns.gx,p),gy=lerp(s.gy,ns.gy,p),gr=lerp(s.gr,ns.gr,p);
+const dots=st.map(function(_,k){return '<circle cx="'+(W/2-27+k*18)+'" cy="'+(H-18)+'" r="'+(k===i?5:3)+'" fill="'+(k===i?accent:'#3a3f45')+'"/>'}).join('');
+const rad=gr*Math.PI/180;
+svg.innerHTML='<rect width="'+W+'" height="'+H+'" fill="#0a0c0e" rx="12"/>'+
+'<circle cx="150" cy="60" r="18" fill="'+body+'"/><rect x="135" y="78" width="30" height="50" rx="4" fill="'+body+'"/><rect x="130" y="128" width="16" height="55" rx="3" fill="#4a525a"/><rect x="154" y="128" width="16" height="55" rx="3" fill="#4a525a"/>'+
+'<path d="M135 85 L'+(gx-15)+' '+(gy-5)+'" stroke="'+body+'" stroke-width="10" stroke-linecap="round"/>'+
+'<path d="M165 85 L'+(gx+5)+' '+(gy+5)+'" stroke="'+body+'" stroke-width="10" stroke-linecap="round"/>'+
+'<g transform="translate('+gx+','+gy+') rotate('+gr+')"><rect x="-5" y="-3" width="60" height="7" rx="2" fill="'+gun+'"/><rect x="50" y="-5" width="18" height="10" rx="2" fill="#6b747c"/><rect x="-12" y="-2" width="10" height="5" rx="1" fill="#5a6370"/></g>'+
+'<line x1="'+(gx+55*Math.cos(rad))+'" y1="'+(gy+55*Math.sin(rad))+'" x2="'+(gx+90*Math.cos(rad))+'" y2="'+(gy+90*Math.sin(rad))+'" stroke="'+accent+'" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>'+
+dots+
+'<text x="'+(W/2)+'" y="'+(H-30)+'" text-anchor="middle" font-size="12" fill="'+accent+'" font-weight="600">'+s.lb+'</text>';
+}};
+
+/* ── diagnostic erori grupă (t10) ── */
+ANIMS.diag={t:'Diagnosticul erorilor de tragere',steps:[
+{d:2000,c:'Grupă centrată = fundamente corecte'},
+{d:2000,c:'Jos-stânga: strângere excesivă a trăgaciului'},
+{d:2000,c:'Sus: anticiparea reculului / împingere'},
+{d:2000,c:'Dreapta: aliniere greșită sau ochi dominant schimbat'},
+{d:2000,c:'Dispersie largă: priză inconsistentă sau respirație'}
+],f(svg,i,p){
+var W=280,H=280;svg.setAttribute('viewBox','0 0 '+W+' '+H);
+var cx=W/2,cy=H/2-10;
+var patterns=[
+[[0,0],[-3,2],[2,-1],[1,3],[-2,-2]],
+[[-25,30],[-30,35],[-22,28],[-28,32],[-20,25]],
+[[2,-30],[-3,-35],[5,-28],[0,-32],[-2,-26]],
+[[28,5],[32,-2],[25,8],[30,3],[22,0]],
+[[-20,-15],[25,20],[-15,25],[20,-20],[0,30],[-30,10],[15,-25]]
+];
+var shots=patterns[i]||patterns[0];
+var holes='';
+for(var k=0;k<shots.length;k++){
+var delay=k*.12;
+var op=Math.max(0,Math.min(1,(p-delay)*4));
+holes+='<circle cx="'+(cx+shots[k][0])+'" cy="'+(cy+shots[k][1])+'" r="4" fill="#ff6b6b" opacity="'+op+'"/>';
+}
+var labels=['Centrată ✓','Jos-Stânga','Sus','Dreapta','Dispersie'];
+var colors=['#5be38e','#f2b84b','#f2b84b','#f2b84b','#ff6b6b'];
+var cross='<line x1="'+(cx-40)+'" y1="'+cy+'" x2="'+(cx+40)+'" y2="'+cy+'" stroke="#3a3f45" stroke-width="1"/>'+
+'<line x1="'+cx+'" y1="'+(cy-40)+'" x2="'+cx+'" y2="'+(cy+40)+'" stroke="#3a3f45" stroke-width="1"/>';
+var rings='<circle cx="'+cx+'" cy="'+cy+'" r="35" fill="none" stroke="#2a2e33" stroke-width="1"/>'+
+'<circle cx="'+cx+'" cy="'+cy+'" r="20" fill="none" stroke="#2a2e33" stroke-width="1"/>'+
+'<circle cx="'+cx+'" cy="'+cy+'" r="6" fill="none" stroke="#3a3f45" stroke-width="1.5"/>';
+svg.innerHTML='<rect width="'+W+'" height="'+H+'" fill="#0a0c0e" rx="12"/>'+
+rings+cross+holes+
+'<text x="'+cx+'" y="'+(H-16)+'" text-anchor="middle" font-size="13" fill="'+colors[i]+'" font-weight="600">'+labels[i]+'</text>';
+}};
 /* 100-ui.js */
 /* Carcasa: navigare, router, randare */
 const NAV=[['azi','Azi','home'],['lectii','Lecții','book'],['video','Video','film'],['unelte','Unelte','tool'],['caiet','Caiet','note']];
@@ -4483,8 +4621,9 @@ function md(src){
     if(l.startsWith('! ')){fp();out.push(`<div class="note">${ic('alert')}<div>${inl(l.slice(2))}</div></div>`);continue}
     if(l.startsWith('? ')){fp();out.push(`<div class="note i">${ic('info')}<div>${inl(l.slice(2))}</div></div>`);continue}
     if((m=l.match(/^@anim (\w+)/))){fp();out.push(`<div data-anim="${m[1]}"></div>`);continue}
+    if((m=l.match(/^@ilust (\w+)(?:\s+(.*))?/))){fp();out.push(`<div class="ilust" data-ilust="${m[1]}">${m[2]?'<span class="cap">'+esc(m[2])+'</span>':''}</div>`);continue}
     if((m=l.match(/^@tool (\w+) (.*)/))){fp();out.push(`<div class="tool"><button class="btn g" data-go="${toolLink(m[1])}">${ic(TOOLS[m[1]]?TOOLS[m[1]].ic:'chev')} ${esc(m[2])}</button></div>`);continue}
-    para.push(l);
+    para.push(l.replace(/@link (\w+)/g,(_,id)=>LES[id]?`<a href="#/lectie/${id}" class="ilink">${esc(LES[id].t)}</a>`:`<code>@link ${esc(id)}</code>`));
   }
   fp();fl();return out.join('');
 }
@@ -5100,7 +5239,8 @@ tool('quizt',{t:'Test rapid',d:'10 întrebări din toate lecțiile',ic:'quiz',g:
 
 /* 145-tools-carti.js */
 /* UNELTE din cărțile noi (Lawrence & Pannone, Kyle Lamb): clicurile de corecție, traiectoria, antrenorul de decizie, fișele de progres */
-ANAMES.push(['malf','Incidentele la pistol'],['pie','Felie cu felie după colț'],['offset','Decalajul ochitorului și traiectoria']);
+ANAMES.push(['malf','Incidentele la pistol'],['pie','Felie cu felie după colț'],['offset','Decalajul ochitorului și traiectoria'],
+['trans','Tranziție pușcă → pistol'],['reload','Reîncărcare tactică sub presiune'],['ready','Poziții de pregătire ale armei'],['diag','Diagnosticul erorilor de tragere']);
 
 const cmF=v=>(Math.round(v*10)/10).toString().replace('.',',');
 const cmS=v=>{const r=Math.round(v*10)/10;return r===0?'0 cm':(r>0?'+':'−')+cmF(Math.abs(r))+' cm'};
