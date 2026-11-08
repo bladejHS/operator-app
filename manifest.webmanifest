@@ -1,13 +1,13 @@
 {
  "name": "Operator",
  "short_name": "Operator",
- "description": "Lecții, unelte și toate videoclipurile lui Chris Sajnog, plus cărțile lui Lawrence & Pannone și Kyle Lamb, explicate în română.",
+ "description": "Tragere, tactică, CQB, prim ajutor tactic, navigație și pregătirea pentru forțele speciale, explicate în română, cu animații. Plus videoclipurile lui Chris Sajnog și cărțile lui Lawrence & Pannone și Kyle Lamb.",
  "lang": "ro",
  "start_url": "./#/azi",
  "scope": "./",
  "display": "standalone",
- "background_color": "#000000",
- "theme_color": "#000000",
+ "background_color": "#05060a",
+ "theme_color": "#05060a",
  "icons": [
   {
    "src": "icon-192.png",
