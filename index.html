@@ -505,13 +505,18 @@ kbd{display:inline-block;padding:1px 7px;background:var(--s3);box-shadow:inset 0
 @keyframes inPhHit{0%,100%{filter:grayscale(.3) contrast(1.25) brightness(.74)}12%{filter:grayscale(.1) contrast(1.4) brightness(1.15)}}
 .in-ph::after{content:"";position:absolute;inset:0;background:radial-gradient(110% 65% at 50% 32%,transparent 35%,rgba(0,0,0,.78) 100%),linear-gradient(180deg,rgba(0,0,0,.72) 0,transparent 24%,transparent 36%,rgba(0,0,0,.9) 62%,#000 86%)}
 .in-scan{position:absolute;left:0;right:0;top:0;height:2px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(125,255,90,.9),transparent);box-shadow:0 0 18px rgba(125,255,90,.7);opacity:0;
-  animation:inScan calc(var(--k) * .7s) cubic-bezier(.5,0,.5,1) calc(var(--k) * .12s) both}
+  animation:inScan calc(var(--k) * .7s) cubic-bezier(.5,0,.5,1) calc(var(--k) * .12s + var(--o)) both}
 @keyframes inScan{0%{opacity:0;transform:translateY(0)}10%{opacity:1}85%{opacity:.8}100%{opacity:0;transform:translateY(100vh)}}
-#introCv{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+#introCv,#forgeCv{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+/* with the sparks (full mode): the photo, the dial and the mark wait for the sparks to lock at 1.25 s; the rest moves half a second later */
+.intro.forge{--o:.5s}
+.intro:not(.forge){--o:0s}
+.intro.forge .in-logo{animation-delay:1.15s,calc(1.42s + var(--o))}
+.intro.forge .in-ph{animation-delay:calc(.1s + var(--o)),calc(.65s + var(--o)),calc(1.42s + var(--o))}
 .in-flash{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:radial-gradient(60% 40% at 50% 55%,rgba(255,236,200,.92),rgba(255,170,80,.35) 45%,transparent 75%)}
 .in-flash.g{background:radial-gradient(65% 45% at 50% 55%,rgba(235,255,242,.95),rgba(125,255,90,.42) 45%,transparent 78%)}
 .in-hud{position:absolute;top:max(16px,env(safe-area-inset-top));left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:2;pointer-events:none}
-.in-hud i{position:absolute;width:34px;height:34px;border:0 solid rgba(255,255,255,.5);opacity:0;animation:inHud calc(var(--k) * .3s) cubic-bezier(.2,1.4,.4,1) calc(var(--k) * .2s) forwards}
+.in-hud i{position:absolute;width:34px;height:34px;border:0 solid rgba(255,255,255,.5);opacity:0;animation:inHud calc(var(--k) * .3s) cubic-bezier(.2,1.4,.4,1) calc(var(--k) * .2s + var(--o)) forwards}
 .in-hud .c1{left:0;top:0;border-width:2px 0 0 2px;--x:-24px;--y:-24px}
 .in-hud .c2{right:0;top:0;border-width:2px 2px 0 0;--x:24px;--y:-24px}
 .in-hud .c3{left:0;bottom:0;border-width:0 0 2px 2px;--x:-24px;--y:24px}
@@ -519,44 +524,44 @@ kbd{display:inline-block;padding:1px 7px;background:var(--s3);box-shadow:inset 0
 @keyframes inHud{from{opacity:0;transform:translate(var(--x),var(--y)) scale(1.6)}to{opacity:1;transform:none}}
 .in-c{position:relative;z-index:4;text-align:center;padding:0 16px calc(84px + env(safe-area-inset-bottom))}
 .in-lw{position:relative;width:190px;height:190px;margin:0 auto}
-.in-dial{position:absolute;inset:0;width:100%;height:100%;overflow:visible;opacity:0;animation:inSlam calc(var(--k) * .32s) cubic-bezier(.25,1.5,.45,1) calc(var(--k) * .3s) forwards}
+.in-dial{position:absolute;inset:0;width:100%;height:100%;overflow:visible;opacity:0;animation:inSlam calc(var(--k) * .32s) cubic-bezier(.25,1.5,.45,1) calc(var(--k) * .3s + var(--o)) forwards}
 @keyframes inSlam{0%{opacity:0;transform:scale(2.8) rotate(-120deg)}35%{opacity:1}100%{opacity:1;transform:none}}
-.in-ticks{color:rgba(255,255,255,.35);animation:inTicksLit calc(var(--k) * 1.1s) ease calc(var(--k) * 1.42s) both}
+.in-ticks{color:rgba(255,255,255,.35);animation:inTicksLit calc(var(--k) * 1.1s) ease calc(var(--k) * 1.42s + var(--o)) both}
 .in-ticks line{stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
 .in-ticks line.b{stroke-width:2.4}
 @keyframes inTicksLit{0%{color:rgba(255,255,255,.35)}15%{color:#e9ffdf}100%{color:rgba(125,255,90,.5)}}
 .in-track{fill:none;stroke:rgba(255,255,255,.08);stroke-width:3}
 .in-arc{fill:none;stroke:#7dff5a;stroke-width:3.4;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;filter:drop-shadow(0 0 6px rgba(125,255,90,.95));
-  animation:inArc calc(var(--k) * .55s) cubic-bezier(.7,0,.3,1) calc(var(--k) * .42s) forwards,inArcGlow calc(var(--k) * .9s) ease calc(var(--k) * 1.42s) forwards}
+  animation:inArc calc(var(--k) * .55s) cubic-bezier(.7,0,.3,1) calc(var(--k) * .42s + var(--o)) forwards,inArcGlow calc(var(--k) * .9s) ease calc(var(--k) * 1.42s + var(--o)) forwards}
 @keyframes inArc{to{stroke-dashoffset:0}}
 @keyframes inArcGlow{0%{stroke-width:3.4}15%{stroke-width:7;filter:drop-shadow(0 0 18px #7dff5a)}100%{stroke-width:3.4}}
 .in-cross line{stroke:rgba(255,255,255,.65);stroke-width:1.4;stroke-linecap:round}
-.in-cross{transform-box:view-box;transform-origin:100px 100px;opacity:0;animation:inCross calc(var(--k) * .26s) cubic-bezier(.2,1.3,.4,1) calc(var(--k) * .48s) forwards}
+.in-cross{transform-box:view-box;transform-origin:100px 100px;opacity:0;animation:inCross calc(var(--k) * .26s) cubic-bezier(.2,1.3,.4,1) calc(var(--k) * .48s + var(--o)) forwards}
 @keyframes inCross{0%{opacity:0;transform:scale(2.2)}100%{opacity:1;transform:none}}
 .in-logo{position:absolute;left:50%;top:50%;width:112px;height:132px;margin:-66px 0 0 -56px;overflow:visible;opacity:0;object-fit:contain;
   animation:inFocus calc(var(--k) * .42s) cubic-bezier(.2,.9,.2,1) calc(var(--k) * .45s) forwards,inLogoGlow .8s ease calc(var(--k) * 1.42s) forwards}
 @keyframes inFocus{0%{opacity:0;filter:blur(12px);transform:scale(1.5)}100%{opacity:1;filter:blur(0);transform:none}}
 @keyframes inLogoGlow{0%{filter:none}30%{filter:drop-shadow(0 0 24px rgba(125,255,90,.95)) brightness(1.4)}100%{filter:drop-shadow(0 0 10px rgba(125,255,90,.35))}}
-.in-dot{animation:inDot 1s ease-in-out calc(var(--k) * 1.42s) infinite}
+.in-dot{animation:inDot 1s ease-in-out calc(var(--k) * 1.42s + var(--o)) infinite}
 @keyframes inDot{0%,100%{opacity:1}50%{opacity:.55}}
 .in-ring{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:1px solid rgba(125,255,90,.9);opacity:0;pointer-events:none;
-  animation:inRing 1.1s cubic-bezier(.2,.8,.2,1) calc(var(--k) * 1.42s) forwards}
-.in-ring.r2{border-width:2px;border-color:rgba(255,255,255,.55);animation-delay:calc(var(--k) * 1.52s)}
+  animation:inRing 1.1s cubic-bezier(.2,.8,.2,1) calc(var(--k) * 1.42s + var(--o)) forwards}
+.in-ring.r2{border-width:2px;border-color:rgba(255,255,255,.55);animation-delay:calc(var(--k) * 1.52s + var(--o))}
 @keyframes inRing{0%{opacity:.95;transform:scale(.6)}100%{opacity:0;transform:scale(6.5)}}
 .in-word{display:flex;justify-content:center;font:400 clamp(40px,12vw,66px)/1.05 var(--fst);letter-spacing:.16em;padding-left:.16em;margin-top:26px;
-  animation:inGlitch calc(var(--k) * .6s) steps(1,end) calc(var(--k) * 1.62s) both}
+  animation:inGlitch calc(var(--k) * .6s) steps(1,end) calc(var(--k) * 1.62s + var(--o)) both}
 @keyframes inGlitch{0%{filter:drop-shadow(4px 0 rgba(255,60,60,.85)) drop-shadow(-4px 0 rgba(60,220,255,.85));transform:translateX(3px) skewX(-8deg)}
   20%{filter:drop-shadow(-3px 0 rgba(255,60,60,.8)) drop-shadow(3px 0 rgba(60,220,255,.8));transform:translateX(-4px) skewX(6deg)}
   40%{filter:drop-shadow(2px 0 rgba(255,60,60,.7)) drop-shadow(-2px 0 rgba(60,220,255,.7));transform:translateX(2px)}
   60%{filter:drop-shadow(-1px 0 rgba(255,60,60,.45)) drop-shadow(1px 0 rgba(60,220,255,.45));transform:none}
   80%,100%{filter:none;transform:none}}
 .in-word span{display:inline-block;opacity:0;background:linear-gradient(180deg,#fff 30%,#a9b4ad);-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:inLet calc(var(--k) * .3s) cubic-bezier(.2,1.5,.35,1) calc(var(--k) * (1.55s + var(--i) * .045s)) both}
+  animation:inLet calc(var(--k) * .3s) cubic-bezier(.2,1.5,.35,1) calc(var(--k) * (1.55s + var(--i) * .045s) + var(--o)) both}
 .in-word span.g{background:linear-gradient(180deg,#d6ffc9 20%,#7dff5a);-webkit-background-clip:text;background-clip:text}
 @keyframes inLet{0%{opacity:0;transform:scale(2.6) translateY(-6px);filter:blur(8px)}40%{opacity:1}100%{opacity:1;transform:none;filter:blur(0)}}
-.in-bar{height:2px;width:0;margin:16px auto 0;background:linear-gradient(90deg,transparent,#7dff5a,transparent);box-shadow:0 0 12px rgba(125,255,90,.6);animation:inBar calc(var(--k) * .25s) cubic-bezier(.7,0,.2,1) calc(var(--k) * 1.95s) forwards}
+.in-bar{height:2px;width:0;margin:16px auto 0;background:linear-gradient(90deg,transparent,#7dff5a,transparent);box-shadow:0 0 12px rgba(125,255,90,.6);animation:inBar calc(var(--k) * .25s + var(--o)) cubic-bezier(.7,0,.2,1) calc(var(--k) * 1.95s + var(--o)) forwards}
 @keyframes inBar{to{width:min(280px,70vw)}}
-.in-sub{font:700 semi-condensed 11px var(--f);letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:14px;opacity:0;padding-left:.3em;white-space:nowrap;animation:inSub .45s cubic-bezier(.2,.9,.2,1) calc(var(--k) * 2.05s) forwards}
+.in-sub{font:700 semi-condensed 11px var(--f);letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:14px;opacity:0;padding-left:.3em;white-space:nowrap;animation:inSub .45s cubic-bezier(.2,.9,.2,1) calc(var(--k) * 2.05s + var(--o)) forwards}
 @keyframes inSub{from{opacity:0;letter-spacing:.9em}to{opacity:1;letter-spacing:.3em}}
 .in-skip{position:absolute;bottom:calc(28px + env(safe-area-inset-bottom));left:0;right:0;z-index:6;text-align:center;font:700 semi-condensed 11px var(--f);letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);opacity:0;animation:inSkip .5s ease 1.9s forwards}
 @keyframes inSkip{to{opacity:1}}
@@ -6418,17 +6423,195 @@ route(/^caiet(?:\/(\w+))?$/,(tab='jurnal')=>{
   }};
 });
 
+/* 984-forge.js */
+/* BEAST FORGE — the opening shared by the Beast apps, 2026-11-11.
+   The mark is forged out of light: embers drift in the dark, then a few thousand sparks stream in from the edges of
+   the screen and lock into the wolf; the impact flashes and shakes, the real mark fades in over the sparks; at the
+   exit the sparks blow outward. Each app gives its colour, its mark and its stage. One canvas, 2D, additive blending,
+   capped at 2× pixels and 60 fps; the whole thing stops on destroy().
+   Usage: var f = BeastForge.create({ canvas, mark: 'splash/umbra.webp', stage: element, color: [r,g,b], hot: [r,g,b],
+          count: 2400, onImpact: fn });  f.start();  f.burst();  f.destroy();
+   Timeline from start(): 0–0.45 embers; 0.45–1.25 the stream; 1.25 impact (onImpact fires); hold with a slow pulse. */
+(function () {
+  'use strict';
+  function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : 1 - Math.pow(1 - t, 3); }
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+
+  function create(o) {
+    var cv = o.canvas, ctx = cv.getContext('2d', { alpha: true });
+    var color = o.color || [229, 16, 44], hot = o.hot || [255, 41, 68], white = [255, 244, 236];
+    var COUNT = o.count || 2400, EMBERS = 46;
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    var W = 0, H = 0, pts = [], embers = [], ready = false, t0 = 0, raf = 0, live = false, burstAt = 0, impacted = false;
+    var stage = { x: 0, y: 0, w: 0, h: 0 };
+
+    function size() {
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var r = o.stage && o.stage.getBoundingClientRect();
+      if (r && r.width) stage = { x: r.left, y: r.top, w: r.width, h: r.height };
+      else stage = { x: W / 2 - 150, y: H * 0.42 - 176, w: 300, h: 353 };
+    }
+
+    // The mark's opaque pixels become the targets; its lit pixels (the rim, the eyes) get the brightest sparks.
+    function sample(img) {
+      var SW = 136, SH = Math.round(SW * img.height / img.width);
+      var c = document.createElement('canvas'); c.width = SW; c.height = SH;
+      var g = c.getContext('2d', { willReadFrequently: true });
+      g.drawImage(img, 0, 0, SW, SH);
+      var d = g.getImageData(0, 0, SW, SH).data, all = [], i, x, y, a, l;
+      for (y = 0; y < SH; y++) for (x = 0; x < SW; x++) {
+        i = (y * SW + x) * 4; a = d[i + 3];
+        if (a < 120) continue;
+        l = (d[i] + d[i + 1] + d[i + 2]) / 3;
+        all.push({ u: (x + 0.5) / SW, v: (y + 0.5) / SH, lit: l > 40 ? Math.min(1, l / 150) : 0 });
+      }
+      // keep every lit pixel, then fill up with dark ones at random
+      var litOnes = all.filter(function (p) { return p.lit > 0; }), dark = all.filter(function (p) { return !p.lit; });
+      var out = litOnes.slice(0, COUNT);
+      while (out.length < COUNT && dark.length) out.push(dark.splice(Math.floor(Math.random() * dark.length), 1)[0]);
+      var R = Math.hypot(W, H) * 0.62;
+      pts = out.map(function (p) {
+        var ang = rnd(0, Math.PI * 2), dist = R * rnd(0.55, 1.05);
+        return {
+          u: p.u, v: p.v, lit: p.lit,
+          sx: W / 2 + Math.cos(ang) * dist, sy: H * 0.42 + Math.sin(ang) * dist,
+          d: rnd(0, 0.34) + (p.lit ? 0.08 : 0), curl: rnd(-1, 1) * 90, s: p.lit ? rnd(1.4, 2.6) : rnd(0.9, 1.6),
+          px: 0, py: 0, vx: 0, vy: 0, ph: rnd(0, Math.PI * 2)
+        };
+      });
+      for (i = 0; i < EMBERS; i++) embers.push({ x: rnd(0, 1), y: rnd(0.3, 1.2), s: rnd(1, 2.6), v: rnd(0.025, 0.07), ph: rnd(0, 6.3), a: rnd(0.25, 0.7) });
+      ready = true;
+    }
+
+    function target(p) { return [stage.x + p.u * stage.w, stage.y + p.v * stage.h]; }
+
+    function frame(now) {
+      if (!live) return;
+      raf = requestAnimationFrame(frame);
+      var t = (now - t0) / 1000, i, p, k, tx, ty, a, x, y, since;
+      ctx.clearRect(0, 0, W, H);
+      if (!ready) return;
+      var shake = 0;
+      if (impacted) { since = t - 1.25; if (since < 0.3) shake = (1 - since / 0.3) * 9; }
+      ctx.save();
+      if (shake) ctx.translate(rnd(-shake, shake), rnd(-shake, shake));
+      ctx.globalCompositeOperation = 'lighter';
+
+      // embers: slow, rising, always there until the exit
+      var eA = burstAt ? Math.max(0, 1 - (t - burstAt) / 0.4) : Math.min(1, t / 0.5);
+      for (i = 0; i < embers.length; i++) {
+        p = embers[i];
+        y = (p.y - t * p.v) % 1.15; if (y < 0) y += 1.15;
+        x = p.x + Math.sin(t * 0.7 + p.ph) * 0.012;
+        ctx.fillStyle = rgba(color, p.a * eA * (0.5 + 0.5 * Math.sin(t * 2 + p.ph)));
+        ctx.fillRect(x * W, y * H - 0.1 * H, p.s, p.s);
+      }
+
+      if (burstAt) {
+        // the exit: every spark flies out from the mark, fading
+        since = t - burstAt;
+        a = Math.max(0, 1 - since / 0.5);
+        for (i = 0; i < pts.length; i++) {
+          p = pts[i];
+          x = p.px + p.vx * since + p.vx * since * since * 1.6; y = p.py + p.vy * since + p.vy * since * since * 1.6;
+          ctx.fillStyle = rgba(p.lit ? white : hot, a * (p.lit ? 0.9 : 0.55));
+          ctx.fillRect(x, y, p.s, p.s);
+        }
+        ctx.restore();
+        if (a <= 0) { live = false; cancelAnimationFrame(raf); ctx.clearRect(0, 0, W, H); }
+        return;
+      }
+
+      var STREAM = 0.45, DUR = 0.72;
+      for (i = 0; i < pts.length; i++) {
+        p = pts[i];
+        k = ease((t - STREAM - p.d) / DUR);
+        if (k <= 0) continue;
+        tx = stage.x + p.u * stage.w; ty = stage.y + p.v * stage.h;
+        if (k < 1) {
+          // a curved approach, then straight home; a trail behind each spark
+          var cx = (p.sx + tx) / 2 - (ty - p.sy) * 0.001 * p.curl, cy = (p.sy + ty) / 2 + (tx - p.sx) * 0.001 * p.curl;
+          var m = 1 - k;
+          x = m * m * p.sx + 2 * m * k * cx + k * k * tx; y = m * m * p.sy + 2 * m * k * cy + k * k * ty;
+          ctx.strokeStyle = rgba(p.lit ? white : color, 0.35 * (1 - k) + 0.1);
+          ctx.lineWidth = p.s * 0.8;
+          ctx.beginPath(); ctx.moveTo(p.px || x, p.py || y); ctx.lineTo(x, y); ctx.stroke();
+          ctx.fillStyle = rgba(p.lit ? white : hot, p.lit ? 0.95 : 0.7);
+          ctx.fillRect(x - p.s / 2, y - p.s / 2, p.s, p.s);
+        } else {
+          // locked in: a slow breath, and a dim after the real mark is in
+          var dimmed = impacted ? Math.max(0.28, 1 - (t - 1.25) * 1.4) : 1;
+          var j = Math.sin(t * 5 + p.ph) * 0.4;
+          x = tx + j; y = ty - j;
+          a = (p.lit ? 0.95 : 0.4) * dimmed * (0.85 + 0.15 * Math.sin(t * 2.4 + p.ph));
+          ctx.fillStyle = rgba(p.lit ? white : hot, a);
+          ctx.fillRect(x - p.s / 2, y - p.s / 2, p.s, p.s);
+        }
+        p.px = x; p.py = y;
+      }
+
+      if (!impacted && t >= 1.25) {
+        impacted = true;
+        for (i = 0; i < pts.length; i++) { p = pts[i]; if (!p.px) { var tt = target(p); p.px = tt[0]; p.py = tt[1]; } }
+        if (o.onImpact) o.onImpact();
+      }
+      if (impacted) {
+        // the shock ring
+        since = t - 1.25;
+        if (since < 0.7) {
+          var r = 40 + ease(since / 0.7) * Math.max(W, H) * 0.7;
+          ctx.strokeStyle = rgba(hot, (1 - since / 0.7) * 0.9); ctx.lineWidth = 3 - since * 3;
+          ctx.beginPath(); ctx.arc(stage.x + stage.w / 2, stage.y + stage.h * 0.46, r, 0, Math.PI * 2); ctx.stroke();
+        }
+      }
+      ctx.restore();
+    }
+
+    var img = new Image();
+    img.onload = function () { try { size(); sample(img); } catch (e) { ready = false; } };
+    img.onerror = function () { ready = false; };
+    img.src = o.mark;
+    addEventListener('resize', size);
+
+    return {
+      start: function () { size(); live = true; t0 = performance.now(); raf = requestAnimationFrame(frame); },
+      /** The sparks blow outward from where they sit. */
+      burst: function () {
+        if (!live || burstAt) return;
+        var now = (performance.now() - t0) / 1000, cx = stage.x + stage.w / 2, cy = stage.y + stage.h * 0.46, i, p, dx, dy, l;
+        for (i = 0; i < pts.length; i++) {
+          p = pts[i]; if (!p.px) { var tt = target(p); p.px = tt[0]; p.py = tt[1]; }
+          dx = p.px - cx; dy = p.py - cy; l = Math.hypot(dx, dy) || 1;
+          var sp = rnd(260, 820);
+          p.vx = dx / l * sp + rnd(-60, 60); p.vy = dy / l * sp + rnd(-60, 60);
+        }
+        burstAt = now;
+      },
+      /** Still picture for the calm mode: the sparks sit on the mark, no motion. */
+      still: function () { size(); live = true; t0 = performance.now() - 1300; impacted = true; raf = requestAnimationFrame(frame); },
+      destroy: function () { live = false; cancelAnimationFrame(raf); removeEventListener('resize', size); ctx.clearRect(0, 0, W, H); }
+    };
+  }
+  window.BeastForge = { create: create };
+})();
+
 /* 985-intro.js */
 /* Animația de deschidere, agresivă: tăietură bruscă pe poza operatorului, reticulul trântit în centru, trei focuri
    (fulger, zguduitură, găuri cu fisuri ca în sticlă, scântei), apoi OPERATOR lovit literă cu literă, cu o sclipire de „glitch”.
    La final, cătarea zboară în sigla din antet și ecranul se strânge ca un iris. */
-const INTRO={on:false,leaving:false,tm:[]};
+const INTRO={on:false,leaving:false,tm:[],forge:null};
+/* full mode: the sparks forge the mark first (0.45–1.25 s, see 984-forge.js), so everything else comes half a second later */
 const IN_SHOTS=[.95,1.17,1.42];
+const IN_OFF=.5;
 function introHTML(){
   let ticks='';for(let i=0;i<60;i++){const a=(i*6-90)*Math.PI/180,big=i%5===0,r1=big?83:86,r2=92;
     ticks+=`<line class="${big?'b':''}" x1="${(100+r1*Math.cos(a)).toFixed(2)}" y1="${(100+r1*Math.sin(a)).toFixed(2)}" x2="${(100+r2*Math.cos(a)).toFixed(2)}" y2="${(100+r2*Math.sin(a)).toFixed(2)}"/>`}
   const W='OPERATOR'.split('').map((c,i)=>`<span style="--i:${i}" class="${i>=5?'g':''}">${c}</span>`).join('');
-  return `<div class="in-shk" id="inShk"><div class="in-ph" style="--ph:url('${PH.cover}')"></div><div class="in-scan"></div><canvas id="introCv"></canvas><div class="in-flash" id="inFlash"></div>
+  return `<div class="in-shk" id="inShk"><div class="in-ph" style="--ph:url('${PH.cover}')"></div><div class="in-scan"></div><canvas id="forgeCv"></canvas><canvas id="introCv"></canvas><div class="in-flash" id="inFlash"></div>
   <div class="in-hud"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>
   <div class="in-c"><div class="in-lw" id="inLw"><svg class="in-dial" viewBox="0 0 200 200"><g class="in-ticks">${ticks}</g><circle class="in-track" cx="100" cy="100" r="74"/>
     <circle class="in-arc" cx="100" cy="100" r="74" pathLength="1" transform="rotate(-90 100 100)"/>
@@ -6486,14 +6669,16 @@ function introStart(){
   if(mode==='off'||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const el=document.createElement('div');el.className='intro'+(mode==='short'?' short':'');el.id='intro';el.setAttribute('aria-hidden','true');el.innerHTML=introHTML();
   document.body.appendChild(el);INTRO.on=true;INTRO.leaving=false;INTRO.tm.forEach(clearTimeout);INTRO.tm=[];introFx(mode);
-  const k=mode==='full'?1:.45;
-  IN_SHOTS.forEach((t,i)=>INTRO.tm.push(setTimeout(()=>{if(INTRO.on&&!INTRO.leaving)introShot(i)},t*k*1000)));
-  el.addEventListener('click',introExit);INTRO.tm.push(setTimeout(introExit,mode==='full'?3900:1700));
+  const k=mode==='full'?1:.45,off=mode==='full'&&window.BeastForge?IN_OFF:0;
+  if(off){el.classList.add('forge');INTRO.forge=BeastForge.create({canvas:$('#forgeCv'),mark:MARKL,stage:$('#inLogo'),color:[60,180,40],hot:[125,255,90],count:1800,onImpact(){el.classList.add('hit')}});INTRO.forge.start()}
+  IN_SHOTS.forEach((t,i)=>INTRO.tm.push(setTimeout(()=>{if(INTRO.on&&!INTRO.leaving)introShot(i)},(t*k+off)*1000)));
+  el.addEventListener('click',introExit);INTRO.tm.push(setTimeout(introExit,(mode==='full'?3900:1700)+off*1000));
 }
 function introExit(){
   if(!INTRO.on||INTRO.leaving)return;INTRO.leaving=true;INTRO.leftAt=performance.now();INTRO.tm.forEach(clearTimeout);INTRO.tm=[];
+  if(INTRO.forge){INTRO.forge.burst();setTimeout(()=>{if(INTRO.forge){INTRO.forge.destroy();INTRO.forge=null}},700)}
   const intro=$('#intro'),il=$('#inLogo');const hl=$$('.brand .mk').find(x=>x.offsetParent!==null&&x.getBoundingClientRect().width>0);
-  const finish=()=>{INTRO.on=false;if(intro&&intro.isConnected)intro.remove();if(hl){hl.classList.add('land');setTimeout(()=>hl.classList.remove('land'),520)}};
+  const finish=()=>{INTRO.on=false;if(INTRO.forge){INTRO.forge.destroy();INTRO.forge=null}if(intro&&intro.isConnected)intro.remove();if(hl){hl.classList.add('land');setTimeout(()=>hl.classList.remove('land'),520)}};
   try{
     if(!hl)throw 0;const r1=il.getBoundingClientRect(),r2=hl.getBoundingClientRect(),cx=r2.left+r2.width/2,cy=r2.top+r2.height/2;
     const dx=cx-(r1.left+r1.width/2),dy=cy-(r1.top+r1.height/2),sc=r2.width/r1.width;
