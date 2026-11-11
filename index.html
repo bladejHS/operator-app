@@ -7,7 +7,7 @@
 <meta name="description" content="Lecții, unelte și toate videoclipurile lui Chris Sajnog, plus cărțile lui Lawrence & Pannone și Kyle Lamb, explicate în română.">
 <title>Operator</title>
 <link rel="icon" href="icon-192.png">
-<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="preload" href="fonts/saira-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/saira-stencil-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1320x2868.png"><link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1206x2622.png"><link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1290x2796.png"><link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1179x2556.png"><link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1170x2532.png"><link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1125x2436.png"><link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1284x2778.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1242x2688.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="start-828x1792.png"><link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="start-750x1334.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="start-1242x2208.png"><link rel="preload" href="fonts/saira-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/saira-stencil-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>/* OPERATOR, "Broadcast · Night Ops" (2026-11-08): the interface of the Beast series (Inner Beast, Beast Nutrition)
    with Operator's own theme. The same steel-black arena, plates and type system; the light is night-vision green
    (the family reads red for training, blue for fuel, green for the operator). Titles in Saira Stencil, everything
@@ -6430,7 +6430,8 @@ route(/^caiet(?:\/(\w+))?$/,(tab='jurnal')=>{
    exit the sparks blow outward. Each app gives its colour, its mark and its stage. One canvas, 2D, additive blending,
    capped at 2× pixels and 60 fps; the whole thing stops on destroy().
    Usage: var f = BeastForge.create({ canvas, mark: 'splash/umbra.webp', stage: element, color: [r,g,b], hot: [r,g,b],
-          count: 2400, onImpact: fn });  f.start();  f.burst();  f.destroy();
+          count: 2400, onImpact: fn, origin: 'ring' | 'left' | 'right', filter: function (u, v) { return bool; } });
+          f.start();  f.burst();  f.destroy();  (origin: where the sparks come from; filter: which part of the mark they forge)
    Timeline from start(): 0–0.45 embers; 0.45–1.25 the stream; 1.25 impact (onImpact fires); hold with a slow pulse. */
 (function () {
   'use strict';
@@ -6466,6 +6467,7 @@ route(/^caiet(?:\/(\w+))?$/,(tab='jurnal')=>{
       for (y = 0; y < SH; y++) for (x = 0; x < SW; x++) {
         i = (y * SW + x) * 4; a = d[i + 3];
         if (a < 120) continue;
+        if (o.filter && !o.filter((x + 0.5) / SW, (y + 0.5) / SH)) continue;
         l = (d[i] + d[i + 1] + d[i + 2]) / 3;
         all.push({ u: (x + 0.5) / SW, v: (y + 0.5) / SH, lit: l > 40 ? Math.min(1, l / 150) : 0 });
       }
@@ -6474,11 +6476,15 @@ route(/^caiet(?:\/(\w+))?$/,(tab='jurnal')=>{
       var out = litOnes.slice(0, COUNT);
       while (out.length < COUNT && dark.length) out.push(dark.splice(Math.floor(Math.random() * dark.length), 1)[0]);
       var R = Math.hypot(W, H) * 0.62;
+      var origin = o.origin || 'ring';
       pts = out.map(function (p) {
-        var ang = rnd(0, Math.PI * 2), dist = R * rnd(0.55, 1.05);
+        var ang = rnd(0, Math.PI * 2), dist = R * rnd(0.55, 1.05), sx, sy;
+        if (origin === 'left') { sx = -W * rnd(0.05, 0.6); sy = rnd(-0.1, 1.1) * H; }
+        else if (origin === 'right') { sx = W + W * rnd(0.05, 0.6); sy = rnd(-0.1, 1.1) * H; }
+        else { sx = W / 2 + Math.cos(ang) * dist; sy = H * 0.42 + Math.sin(ang) * dist; }
         return {
           u: p.u, v: p.v, lit: p.lit,
-          sx: W / 2 + Math.cos(ang) * dist, sy: H * 0.42 + Math.sin(ang) * dist,
+          sx: sx, sy: sy,
           d: rnd(0, 0.34) + (p.lit ? 0.08 : 0), curl: rnd(-1, 1) * 90, s: p.lit ? rnd(1.4, 2.6) : rnd(0.9, 1.6),
           px: 0, py: 0, vx: 0, vy: 0, ph: rnd(0, Math.PI * 2)
         };
