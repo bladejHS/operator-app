@@ -494,79 +494,61 @@ kbd{display:inline-block;padding:1px 7px;background:var(--s3);box-shadow:inset 0
 .lesban i{position:absolute;inset:0;background:var(--ph) center var(--py,40%)/cover no-repeat;filter:grayscale(.55) contrast(1.12) brightness(.6);animation:kb 14s ease-out both}
 .lesban::after{content:"";position:absolute;inset:0;background:var(--topo) right -60px top -40px/420px auto no-repeat,linear-gradient(180deg,rgba(5,6,10,0) 15%,rgba(5,6,10,.97))}
 
-/* animația de deschidere: tăietură bruscă pe operator, reticulul trântit, trei focuri, OPERATOR lovit literă cu literă */
-.intro{position:fixed;inset:0;z-index:300;cursor:pointer;overflow:hidden;--k:1;color:#f1f3f4;background:#000}
-.intro.short{--k:.45}
-.in-shk{position:absolute;inset:0;display:grid;align-items:end;justify-items:center}
-.in-ph{position:absolute;inset:-4%;z-index:0;background:var(--ph) 50% 22%/cover no-repeat;opacity:0;filter:grayscale(.3) contrast(1.25) brightness(.74);
-  animation:inPh calc(var(--k) * .55s) cubic-bezier(.12,.9,.1,1) calc(var(--k) * .1s) both,inPhD calc(var(--k) * 3.2s) linear calc(var(--k) * .65s) forwards,inPhHit .6s ease-out calc(var(--k) * 1.42s) both}
-@keyframes inPh{0%{opacity:0;transform:scale(1.42)}1%{opacity:1}100%{opacity:1;transform:scale(1.07)}}
-@keyframes inPhD{from{transform:scale(1.07)}to{transform:scale(1.02)}}
-@keyframes inPhHit{0%,100%{filter:grayscale(.3) contrast(1.25) brightness(.74)}12%{filter:grayscale(.1) contrast(1.4) brightness(1.15)}}
-.in-ph::after{content:"";position:absolute;inset:0;background:radial-gradient(110% 65% at 50% 32%,transparent 35%,rgba(0,0,0,.78) 100%),linear-gradient(180deg,rgba(0,0,0,.72) 0,transparent 24%,transparent 36%,rgba(0,0,0,.9) 62%,#000 86%)}
-.in-scan{position:absolute;left:0;right:0;top:0;height:2px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(125,255,90,.9),transparent);box-shadow:0 0 18px rgba(125,255,90,.7);opacity:0;
-  animation:inScan calc(var(--k) * .7s) cubic-bezier(.5,0,.5,1) calc(var(--k) * .12s + var(--o)) both}
-@keyframes inScan{0%{opacity:0;transform:translateY(0)}10%{opacity:1}85%{opacity:.8}100%{opacity:0;transform:translateY(100vh)}}
-#introCv,#forgeCv{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
-/* with the sparks (full mode): the photo, the dial and the mark wait for the sparks to lock at 1.25 s; the rest moves half a second later */
-.intro.forge{--o:.5s}
-.intro:not(.forge){--o:0s}
-.intro.forge .in-logo{animation-delay:1.15s,calc(1.42s + var(--o))}
-.intro.forge .in-ph{animation-delay:calc(.1s + var(--o)),calc(.65s + var(--o)),calc(1.42s + var(--o))}
-.in-flash{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:radial-gradient(60% 40% at 50% 55%,rgba(255,236,200,.92),rgba(255,170,80,.35) 45%,transparent 75%)}
-.in-flash.g{background:radial-gradient(65% 45% at 50% 55%,rgba(235,255,242,.95),rgba(125,255,90,.42) 45%,transparent 78%)}
-.in-hud{position:absolute;top:max(16px,env(safe-area-inset-top));left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:2;pointer-events:none}
-.in-hud i{position:absolute;width:34px;height:34px;border:0 solid rgba(255,255,255,.5);opacity:0;animation:inHud calc(var(--k) * .3s) cubic-bezier(.2,1.4,.4,1) calc(var(--k) * .2s + var(--o)) forwards}
-.in-hud .c1{left:0;top:0;border-width:2px 0 0 2px;--x:-24px;--y:-24px}
-.in-hud .c2{right:0;top:0;border-width:2px 2px 0 0;--x:24px;--y:-24px}
-.in-hud .c3{left:0;bottom:0;border-width:0 0 2px 2px;--x:-24px;--y:24px}
-.in-hud .c4{right:0;bottom:0;border-width:0 2px 2px 0;--x:24px;--y:24px}
-@keyframes inHud{from{opacity:0;transform:translate(var(--x),var(--y)) scale(1.6)}to{opacity:1;transform:none}}
-.in-c{position:relative;z-index:4;text-align:center;padding:0 16px calc(84px + env(safe-area-inset-bottom))}
-.in-lw{position:relative;width:190px;height:190px;margin:0 auto}
-.in-dial{position:absolute;inset:0;width:100%;height:100%;overflow:visible;opacity:0;animation:inSlam calc(var(--k) * .32s) cubic-bezier(.25,1.5,.45,1) calc(var(--k) * .3s + var(--o)) forwards}
-@keyframes inSlam{0%{opacity:0;transform:scale(2.8) rotate(-120deg)}35%{opacity:1}100%{opacity:1;transform:none}}
-.in-ticks{color:rgba(255,255,255,.35);animation:inTicksLit calc(var(--k) * 1.1s) ease calc(var(--k) * 1.42s + var(--o)) both}
-.in-ticks line{stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
-.in-ticks line.b{stroke-width:2.4}
-@keyframes inTicksLit{0%{color:rgba(255,255,255,.35)}15%{color:#e9ffdf}100%{color:rgba(125,255,90,.5)}}
-.in-track{fill:none;stroke:rgba(255,255,255,.08);stroke-width:3}
-.in-arc{fill:none;stroke:#7dff5a;stroke-width:3.4;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;filter:drop-shadow(0 0 6px rgba(125,255,90,.95));
-  animation:inArc calc(var(--k) * .55s) cubic-bezier(.7,0,.3,1) calc(var(--k) * .42s + var(--o)) forwards,inArcGlow calc(var(--k) * .9s) ease calc(var(--k) * 1.42s + var(--o)) forwards}
-@keyframes inArc{to{stroke-dashoffset:0}}
-@keyframes inArcGlow{0%{stroke-width:3.4}15%{stroke-width:7;filter:drop-shadow(0 0 18px #7dff5a)}100%{stroke-width:3.4}}
-.in-cross line{stroke:rgba(255,255,255,.65);stroke-width:1.4;stroke-linecap:round}
-.in-cross{transform-box:view-box;transform-origin:100px 100px;opacity:0;animation:inCross calc(var(--k) * .26s) cubic-bezier(.2,1.3,.4,1) calc(var(--k) * .48s + var(--o)) forwards}
-@keyframes inCross{0%{opacity:0;transform:scale(2.2)}100%{opacity:1;transform:none}}
-.in-logo{position:absolute;left:50%;top:50%;width:112px;height:132px;margin:-66px 0 0 -56px;overflow:visible;opacity:0;object-fit:contain;
-  animation:inFocus calc(var(--k) * .42s) cubic-bezier(.2,.9,.2,1) calc(var(--k) * .45s) forwards,inLogoGlow .8s ease calc(var(--k) * 1.42s) forwards}
-@keyframes inFocus{0%{opacity:0;filter:blur(12px);transform:scale(1.5)}100%{opacity:1;filter:blur(0);transform:none}}
-@keyframes inLogoGlow{0%{filter:none}30%{filter:drop-shadow(0 0 24px rgba(125,255,90,.95)) brightness(1.4)}100%{filter:drop-shadow(0 0 10px rgba(125,255,90,.35))}}
-.in-dot{animation:inDot 1s ease-in-out calc(var(--k) * 1.42s + var(--o)) infinite}
-@keyframes inDot{0%,100%{opacity:1}50%{opacity:.55}}
-.in-ring{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:1px solid rgba(125,255,90,.9);opacity:0;pointer-events:none;
-  animation:inRing 1.1s cubic-bezier(.2,.8,.2,1) calc(var(--k) * 1.42s + var(--o)) forwards}
-.in-ring.r2{border-width:2px;border-color:rgba(255,255,255,.55);animation-delay:calc(var(--k) * 1.52s + var(--o))}
-@keyframes inRing{0%{opacity:.95;transform:scale(.6)}100%{opacity:0;transform:scale(6.5)}}
-.in-word{display:flex;justify-content:center;font:400 clamp(40px,12vw,66px)/1.05 var(--fst);letter-spacing:.16em;padding-left:.16em;margin-top:26px;
-  animation:inGlitch calc(var(--k) * .6s) steps(1,end) calc(var(--k) * 1.62s + var(--o)) both}
-@keyframes inGlitch{0%{filter:drop-shadow(4px 0 rgba(255,60,60,.85)) drop-shadow(-4px 0 rgba(60,220,255,.85));transform:translateX(3px) skewX(-8deg)}
-  20%{filter:drop-shadow(-3px 0 rgba(255,60,60,.8)) drop-shadow(3px 0 rgba(60,220,255,.8));transform:translateX(-4px) skewX(6deg)}
-  40%{filter:drop-shadow(2px 0 rgba(255,60,60,.7)) drop-shadow(-2px 0 rgba(60,220,255,.7));transform:translateX(2px)}
-  60%{filter:drop-shadow(-1px 0 rgba(255,60,60,.45)) drop-shadow(1px 0 rgba(60,220,255,.45));transform:none}
-  80%,100%{filter:none;transform:none}}
-.in-word span{display:inline-block;opacity:0;background:linear-gradient(180deg,#fff 30%,#a9b4ad);-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:inLet calc(var(--k) * .3s) cubic-bezier(.2,1.5,.35,1) calc(var(--k) * (1.55s + var(--i) * .045s) + var(--o)) both}
-.in-word span.g{background:linear-gradient(180deg,#d6ffc9 20%,#7dff5a);-webkit-background-clip:text;background-clip:text}
-@keyframes inLet{0%{opacity:0;transform:scale(2.6) translateY(-6px);filter:blur(8px)}40%{opacity:1}100%{opacity:1;transform:none;filter:blur(0)}}
-.in-bar{height:2px;width:0;margin:16px auto 0;background:linear-gradient(90deg,transparent,#7dff5a,transparent);box-shadow:0 0 12px rgba(125,255,90,.6);animation:inBar calc(var(--k) * .25s + var(--o)) cubic-bezier(.7,0,.2,1) calc(var(--k) * 1.95s + var(--o)) forwards}
-@keyframes inBar{to{width:min(280px,70vw)}}
-.in-sub{font:700 semi-condensed 11px var(--f);letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:14px;opacity:0;padding-left:.3em;white-space:nowrap;animation:inSub .45s cubic-bezier(.2,.9,.2,1) calc(var(--k) * 2.05s + var(--o)) forwards}
-@keyframes inSub{from{opacity:0;letter-spacing:.9em}to{opacity:1;letter-spacing:.3em}}
-.in-skip{position:absolute;bottom:calc(28px + env(safe-area-inset-bottom));left:0;right:0;z-index:6;text-align:center;font:700 semi-condensed 11px var(--f);letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);opacity:0;animation:inSkip .5s ease 1.9s forwards}
-@keyframes inSkip{to{opacity:1}}
-@media (max-height:680px){.in-lw{width:150px;height:150px}.in-logo{width:90px;height:106px;margin:-53px 0 0 -45px}.in-word{margin-top:16px}}
-@media (max-width:360px){.in-sub{letter-spacing:.18em;font-size:10px}}
+/* animația de deschidere, 2026-11-16: drona, ochelarii de noapte (sau imaginea termică), echipa la ușă, grenada,
+   lupul cu cască ale cărui ochelari coboară, OPERATOR ștampilat; subtitluri radio jos */
+.intro{position:fixed;inset:0;z-index:300;cursor:pointer;overflow:hidden;color:#f1f3f4;background:#000}
+.ox-shk{position:absolute;inset:0}
+#oxCv,#forgeCv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#oxCv{z-index:1}#forgeCv{z-index:4}
+/* the drone's grey: the canvas is drawn grey until the goggles drop */
+.intro.full:not(.nvg) #oxCv{filter:grayscale(1) contrast(1.15) brightness(.95)}
+.ox-grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.5;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+/* the goggles: two tubes, black around them, from 1.15 s to the flash */
+.ox-tubes{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;background:radial-gradient(circle at 30% 50%,transparent 0 33vmin,#000 34vmin),radial-gradient(circle at 70% 50%,transparent 0 33vmin,#000 34vmin);
+  -webkit-mask:linear-gradient(#000,#000);background-blend-mode:lighten}
+.ox-tubes{background:#000;-webkit-mask:radial-gradient(circle at 31% 50%,transparent 0 31vmin,#000 32vmin) , radial-gradient(circle at 69% 50%,transparent 0 31vmin,#000 32vmin);-webkit-mask-composite:source-in;mask:radial-gradient(circle at 31% 50%,transparent 0 31vmin,#000 32vmin),radial-gradient(circle at 69% 50%,transparent 0 31vmin,#000 32vmin);mask-composite:intersect}
+.intro.nvg:not(.wolf) .ox-tubes{animation:oxTubes .35s ease-out both}
+.intro.th .ox-tubes{-webkit-mask:radial-gradient(circle at 50% 50%,transparent 0 44vmin,#000 45vmin);mask:radial-gradient(circle at 50% 50%,transparent 0 44vmin,#000 45vmin)}
+@keyframes oxTubes{0%{opacity:1;filter:brightness(0)}30%{opacity:1}100%{opacity:1}}
+.intro.nvg:not(.wolf) #oxCv{animation:oxOn .5s steps(6) both}
+@keyframes oxOn{0%{opacity:0}20%{opacity:.6}35%{opacity:.1}60%{opacity:.9}100%{opacity:1}}
+.ox-flash{position:absolute;inset:0;z-index:7;pointer-events:none;background:#fff;opacity:0}
+/* the drone's frame */
+.ox-hud{position:absolute;inset:max(18px,env(safe-area-inset-top)) 16px 18px;z-index:5;pointer-events:none;font:700 semi-condensed 11px var(--f);letter-spacing:.14em;color:rgba(235,240,235,.85);transition:opacity .25s}
+.intro.nvg .ox-hud,.intro.short .ox-hud{opacity:0}
+.ox-hud>i{position:absolute;width:26px;height:26px;border:2px solid rgba(235,240,235,.7)}
+.ox-hud .c1{left:0;top:0;border-right:0;border-bottom:0}.ox-hud .c2{right:0;top:0;border-left:0;border-bottom:0}.ox-hud .c3{left:0;bottom:0;border-right:0;border-top:0}.ox-hud .c4{right:0;bottom:0;border-left:0;border-top:0}
+.ox-rec{position:absolute;left:36px;top:6px;display:flex;align-items:center;gap:6px}.ox-rec b{width:8px;height:8px;border-radius:50%;background:#ff3b3b;animation:oxRec 1s steps(2) infinite}
+@keyframes oxRec{50%{opacity:0}}
+.ox-tl{position:absolute;left:36px;top:24px;opacity:.75}.ox-tr{position:absolute;right:36px;top:6px}.ox-br{position:absolute;right:36px;bottom:6px}
+.ox-lock{position:absolute;left:50%;top:46%;width:150px;height:110px;margin:-55px 0 0 -75px;opacity:0;transition:all .35s cubic-bezier(.2,.9,.2,1)}
+.ox-lock i{position:absolute;width:18px;height:18px;border:2px solid #ffd23a}
+.ox-lock i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0}.ox-lock i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0}.ox-lock i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0}.ox-lock i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0}
+.ox-lock span{position:absolute;left:0;top:-18px;color:#ffd23a}
+.intro.lock .ox-lock{opacity:1;width:70px;height:56px;margin:-28px 0 0 -35px}
+/* the wolf, the word, the line */
+.ox-c{position:absolute;inset:0;z-index:6;display:grid;place-content:center;justify-items:center;pointer-events:none}
+.ox-wolf{position:relative;width:min(52vw,240px);aspect-ratio:680/801}
+.ox-wolf img{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.intro.hit .ox-up{opacity:1;transition:opacity .25s}
+.intro.down .ox-up{opacity:0;transform:translateY(4%);transition:opacity .2s .1s,transform .3s}
+.intro.down .ox-dn{opacity:1;animation:oxDn .45s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes oxDn{0%{transform:translateY(-6%);filter:brightness(.5)}60%{filter:brightness(1.6) drop-shadow(0 0 22px rgba(125,255,90,.9))}100%{transform:none;filter:drop-shadow(0 0 14px rgba(125,255,90,.55))}}
+.intro.wolf #oxCv{opacity:0;transition:opacity .2s}
+.intro.wolf .ox-tubes{opacity:0}
+.intro.wolf{background:radial-gradient(70% 50% at 50% 42%,rgba(47,191,70,.25),rgba(0,0,0,0) 70%),#000}
+.ox-word{display:flex;justify-content:center;margin-top:18px;font:400 clamp(44px,13vw,72px)/1 var(--fst);letter-spacing:.16em;padding-left:.16em}
+.ox-word span{display:inline-block;opacity:0;color:#e9f2e6}
+.intro.word .ox-word span{animation:oxStamp .32s cubic-bezier(.2,1.6,.4,1) calc(var(--i) * 45ms) both}
+.ox-word span:nth-child(n+6){color:#7dff5a;text-shadow:0 0 18px rgba(125,255,90,.6)}
+@keyframes oxStamp{0%{opacity:0;transform:scale(2.4) rotate(-6deg);filter:blur(4px)}60%{opacity:1;transform:scale(.92)}100%{opacity:1;transform:none;filter:none}}
+.ox-sub{min-height:1.4em;margin-top:10px;font:700 semi-condensed 13px var(--f);letter-spacing:.24em;text-transform:uppercase;color:rgba(200,230,195,.8)}
+/* the radio's subtitles */
+.ox-radio{position:absolute;left:16px;right:16px;bottom:calc(64px + env(safe-area-inset-bottom));z-index:8;text-align:center;font:600 15px/1.35 var(--f);color:#fff;text-shadow:0 1px 3px #000,0 0 8px #000;min-height:1.4em}
+.intro.word .ox-radio{opacity:.8}
+.in-skip{position:absolute;bottom:calc(28px + env(safe-area-inset-bottom));left:0;right:0;z-index:8;text-align:center;font:700 semi-condensed 11px var(--f);letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);opacity:0;animation:oxIn .5s ease-out .9s forwards}
+@keyframes oxIn{to{opacity:1}}
+@media (max-height:680px){.ox-wolf{width:min(42vw,170px)}.ox-word{margin-top:10px}}
 .brand .mk.land{animation:land .5s cubic-bezier(.2,.9,.25,1)}
 @keyframes land{0%{transform:scale(1.35);filter:drop-shadow(0 0 10px rgba(125,255,90,.9))}100%{transform:none;filter:none}}
 
@@ -603,6 +585,102 @@ kbd{display:inline-block;padding:1px 7px;background:var(--s3);box-shadow:inset 0
 .tbl th{font:700 semi-condensed .72rem/1.2 var(--fd);letter-spacing:.14em;text-transform:uppercase;color:var(--mu);text-align:left;padding:9px 10px;border-bottom:1px solid var(--line2)}
 .tbl td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 .tbl td:first-child{font:800 condensed 1.05rem/1.2 var(--fd);color:var(--ac);white-space:nowrap}
+
+/* OPS, 2026-11-16: night vision, the operations order, the map, the patches, the radar, the simulators */
+/* the night-vision switch and the goggles dropping */
+.top .nvg-b{margin-left:auto;width:44px;height:44px;display:grid;place-items:center;color:var(--mu);background:transparent}
+.top .nvg-b.on{color:var(--ac);filter:drop-shadow(0 0 6px rgba(var(--acrgb),.8))}
+.top .brand+.nvg-b{margin-left:auto}
+.nvg-drop{position:fixed;inset:0;z-index:500;pointer-events:none;background:#000;-webkit-mask:radial-gradient(circle at 31% 50%,transparent 0 30vmin,#000 31vmin),radial-gradient(circle at 69% 50%,transparent 0 30vmin,#000 31vmin);-webkit-mask-composite:source-in;mask:radial-gradient(circle at 31% 50%,transparent 0 30vmin,#000 31vmin),radial-gradient(circle at 69% 50%,transparent 0 30vmin,#000 31vmin);mask-composite:intersect;animation:nvgDrop .7s cubic-bezier(.6,0,.3,1) both}
+.nvg-drop.up{animation-name:nvgUp}
+@keyframes nvgDrop{0%{transform:translateY(-100%)}40%{transform:none;opacity:1}100%{transform:none;opacity:0}}
+@keyframes nvgUp{0%{opacity:0}30%{opacity:1;transform:none}100%{transform:translateY(-100%);opacity:1}}
+html.nvgm #main,html.nvgm .top,html.nvgm .nav,html.nvgm .side,html.nvgm #sheet{filter:grayscale(1) sepia(1) hue-rotate(58deg) saturate(3.2) brightness(.92) contrast(1.08)}
+html.nvgm body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px),radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.65) 100%);animation:nvgFlick 4s steps(40) infinite}
+@keyframes nvgFlick{0%,100%{opacity:1}48%{opacity:.93}50%{opacity:1}}
+
+/* the operations order */
+.opord{position:relative;margin:14px 0 6px;padding:16px 16px 14px;background:linear-gradient(180deg,var(--s2),var(--s1)),var(--s1);box-shadow:inset 0 0 0 1px var(--line2);overflow:hidden}
+.opord::before{content:"";position:absolute;inset:6px;background:var(--hud);opacity:.7;pointer-events:none}
+.op-stamp{position:absolute;right:-34px;bottom:26px;transform:rotate(-16deg);padding:4px 40px;border:2px solid var(--bad);color:var(--bad);font:800 condensed .66rem/1 var(--f);letter-spacing:.2em;text-transform:uppercase;opacity:.75}
+.op-h{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
+.op-h b{font:400 1.25rem/1 var(--fst);letter-spacing:.08em;color:var(--ac)}
+.op-h span{font:700 semi-condensed .72rem/1 var(--f);letter-spacing:.18em;color:var(--mu2)}
+.op-r{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.op-r>i{font:400 1.2rem/1.1 var(--fst);font-style:normal;color:var(--ac)}
+.op-r b{font:800 condensed .72rem/1 var(--f);letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+.op-r p{margin:4px 0 0;font-size:.98rem;line-height:1.4}
+.op-r ol{margin:4px 0 0;padding-left:18px;line-height:1.5}
+.op-type::after{content:"▌";color:var(--ac);animation:opCaret .8s steps(2) infinite}
+@keyframes opCaret{50%{opacity:0}}
+
+/* the radar */
+.radar .rd{display:block;width:100%;max-width:300px;margin:8px auto 0}
+.rd-g{fill:none;stroke:var(--line2);stroke-width:1}
+.rd-a{stroke:var(--line2);stroke-width:1}
+.rd text{font:700 9px var(--f);fill:var(--mu);letter-spacing:.06em;text-transform:uppercase}
+.rd-p{fill:rgba(var(--acrgb),.22);stroke:var(--ac);stroke-width:2;filter:drop-shadow(0 0 6px rgba(var(--acrgb),.6));transform-origin:100px 100px;animation:rdIn .9s var(--spring) both}
+@keyframes rdIn{from{transform:scale(.2);opacity:0}}
+.rd-d{fill:var(--ac)}
+
+/* the operations map */
+.opsmap{margin:14px 0 4px;padding:12px;background:radial-gradient(90% 80% at 50% 40%,rgba(var(--acrgb),.08),transparent 70%),var(--s1);box-shadow:inset 0 0 0 1px var(--line2)}
+.om-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.om-h b{font:400 1rem/1 var(--fst);letter-spacing:.1em;color:var(--ac)}
+.om-h span{font:700 semi-condensed .72rem/1 var(--f);letter-spacing:.14em;color:var(--mu2)}
+.om{display:block;width:100%}
+.om-t{fill:none;stroke:rgba(var(--acrgb),.13);stroke-width:.7}
+.om-r{fill:none;stroke:var(--line2);stroke-width:1.2;stroke-dasharray:3 4}
+.om-z{cursor:pointer}
+.om-c{fill:var(--s2);stroke:var(--line2);stroke-width:1.5}
+.om-v{fill:none;stroke:var(--ac);stroke-width:3;stroke-dasharray:calc(var(--f)*100) 100;filter:drop-shadow(0 0 4px rgba(var(--acrgb),.8))}
+.om-z.full .om-c{fill:rgba(var(--acrgb),.2);stroke:var(--ac)}
+.om-n{font:800 11px var(--f);fill:var(--tx);text-anchor:middle;dominant-baseline:middle}
+.om-l{font:700 9px var(--f);fill:var(--mu);text-anchor:middle;letter-spacing:.06em;text-transform:uppercase}
+
+/* the patches */
+.pwall{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pw{display:grid;justify-items:center;gap:4px;padding:6px 2px;background:transparent;text-align:center}
+.pw small{font-size:.68rem;line-height:1.15;color:var(--mu2)}
+.patch{width:100%;max-width:76px;height:auto}
+.pt-b{fill:#20241c;stroke:#0b0d09;stroke-width:3}
+.pt-s{fill:none;stroke:#4a5240;stroke-width:2.5;stroke-dasharray:3 2.5}
+.pt-i{color:#56604c}.pt-i *{stroke:currentColor}
+.pt-t{font:800 9px var(--f);fill:#56604c;text-anchor:middle;letter-spacing:.1em}
+.patch.on .pt-b{fill:#2c3a24;filter:drop-shadow(0 0 8px rgba(var(--acrgb),.35))}
+.patch.on .pt-s{stroke:var(--ac)}.patch.on .pt-i{color:var(--ac)}.patch.on .pt-t{fill:#e9ffdf}
+.pt-cel{position:fixed;inset:0;z-index:400;display:grid;place-items:center;background:radial-gradient(60% 45% at 50% 42%,rgba(var(--acrgb),.25),transparent 75%),rgba(3,5,6,.95);text-align:center;cursor:pointer;animation:fade .3s}
+.pt-cel.out{opacity:0;transition:opacity .35s}
+.pt-core .patch{width:min(46vw,190px);max-width:none;animation:ptLand .7s var(--spring) both}
+@keyframes ptLand{0%{transform:scale(2.4) rotate(-20deg);opacity:0}60%{opacity:1}100%{transform:none}}
+.pt-core small{display:block;margin-top:14px;font:800 condensed .74rem var(--f);letter-spacing:.28em;text-transform:uppercase;color:var(--ac)}
+.pt-core h2{margin:6px 16px;font:400 clamp(1.6rem,8vw,2.4rem)/1.05 var(--fst)}
+.pt-core p{margin:0 24px;color:var(--mu)}
+.pt-tap{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom));left:0;right:0;font:700 .7rem var(--f);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+
+/* the simulators */
+.tc-sc{margin:12px 0;padding:12px 14px;border-left:3px solid var(--bad);background:var(--badd)}
+.tc-sc b{display:block;font:800 condensed 1.05rem var(--f);text-transform:uppercase;letter-spacing:.04em}
+.tc-sc p{margin:6px 0 0;line-height:1.45}
+.tc-t{font:800 1.3rem var(--f);color:var(--warn)}
+.tc-q{margin:12px 0 8px;font-weight:700}
+.tc-o .opt{display:block;width:100%;text-align:left;padding:13px 14px;min-height:48px;background:var(--s2);box-shadow:inset 0 0 0 1px var(--line2);margin-bottom:8px;font-size:.96rem;color:var(--tx)}
+.tc-o .opt.y{background:rgba(var(--acrgb),.12);box-shadow:inset 0 0 0 1.5px var(--ac)}
+.tc-o .opt.n{background:var(--badd);box-shadow:inset 0 0 0 1.5px var(--bad);opacity:.7}
+.why{margin-top:8px;line-height:1.45}
+.nvmap{display:block;width:100%;background:#e9e3cf;border-radius:4px}
+.nv-c{fill:none;stroke:#a5703a;stroke-width:1.3}
+.nv-g{stroke:#7aa6c8;stroke-width:.6;opacity:.6}
+.nv-n{fill:#222;stroke:#222;stroke-width:1}
+.nv-t{font:700 10px var(--f);fill:#222}
+.nv-s{stroke:#222;stroke-width:3}
+.nv-a{fill:#d93a2b;stroke:#fff;stroke-width:2}
+.nv-b{fill:#1f6fd1;stroke:#fff;stroke-width:1.5}
+.nv-l{stroke:#d93a2b;stroke-width:2.5;stroke-dasharray:6 4}
+.shotc{display:block;width:100%;margin:6px 0}
+.sc-l{fill:none;stroke:var(--ac);stroke-width:2}
+.sc-d{fill:var(--ac)}.sc-b{fill:#f5d690;stroke:#fff;stroke-width:1}
+@media (prefers-reduced-motion:reduce){.rd-p,.pt-core .patch,.nvg-drop,html.nvgm body::after,.op-type::after{animation:none}}
 </style>
 </head>
 <body>
@@ -611,6 +689,8 @@ kbd{display:inline-block;padding:1px 7px;background:var(--s3);box-shadow:inset 0
 const ICON64="data:image/png;base64,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";
 const MARK="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiPjxnPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyMCAxMjIpIHNjYWxlKDAuOTgpIHRyYW5zbGF0ZSgtMTIwIC0xMjgpIj48ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0idTE1ciIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2RmZTRlZSIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjOGQ5N2FhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGE1MjY2Ii8+PC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InUxNWgiIHg9Ii0zMCUiIHk9Ii0zMCUiIHdpZHRoPSIxNjAlIiBoZWlnaHQ9IjE2MCUiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjkiLz48L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9InUxNWciIHg9Ii04MCUiIHk9Ii04MCUiIHdpZHRoPSIyNjAlIiBoZWlnaHQ9IjI2MCUiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjUiLz48L2ZpbHRlcj4KICA8L2RlZnM+CiAgPHBhdGggZD0iTTEyMCA2NkwxNDAgNjJMMTc0IDI2TDE5MCA4NkwyMTAgMTA4TDE5NyAxMThMMjE0IDE0NkwxODYgMTU2TDE2MCAxOTBMMTQ2IDIxMkwxMzIgMjI2TDEyMCAyMzBMMTA4IDIyNkw5NCAyMTJMODAgMTkwTDU0IDE1NkwyNiAxNDZMNDMgMTE4TDMwIDEwOEw1MCA4Nkw2NiAyNkwxMDAgNjJaIiBmaWxsPSIjMmZiZjQ2IiBvcGFjaXR5PSIwLjkiIGZpbHRlcj0idXJsKCN1MTVoKSIvPgogIDxwYXRoIGQ9Ik0xMjAgNjZMMTQwIDYyTDE3NCAyNkwxOTAgODZMMjEwIDEwOEwxOTcgMTE4TDIxNCAxNDZMMTg2IDE1NkwxNjAgMTkwTDE0NiAyMTJMMTMyIDIyNkwxMjAgMjMwTDEwOCAyMjZMOTQgMjEyTDgwIDE5MEw1NCAxNTZMMjYgMTQ2TDQzIDExOEwzMCAxMDhMNTAgODZMNjYgMjZMMTAwIDYyWiIgZmlsbD0iIzIzMjgzNSIvPjxwYXRoIGQ9Ik0xNTEgNjFMMTcyIDM4TDE4MiA3NVoiIGZpbGw9IiMxMTE0MWIiLz48cGF0aCBkPSJNNTggNzVMNjggMzhMODkgNjFaIiBmaWxsPSIjMTExNDFiIi8+CiAgPHBhdGggZD0iTTEyMCA2NkwxNDAgNjJMMTc0IDI2TDE5MCA4NkwyMTAgMTA4TDE5NyAxMThMMjE0IDE0NkwxODYgMTU2TDE2MCAxOTBMMTQ2IDIxMkwxMzIgMjI2TDEyMCAyMzBMMTA4IDIyNkw5NCAyMTJMODAgMTkwTDU0IDE1NkwyNiAxNDZMNDMgMTE4TDMwIDEwOEw1MCA4Nkw2NiAyNkwxMDAgNjJaIiBmaWxsPSJub25lIiBzdHJva2U9InVybCgjdTE1cikiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8ZyBmaWx0ZXI9InVybCgjdTE1ZykiPjxwYXRoIGQ9Ik0xMTguNiAxMjVMMTczLjIgOTYuNEwxNjAuMiAxMTQuNloiIGZpbGw9IiM3ZGZmNWEiLz48cGF0aCBkPSJNNzkuOCAxMTQuNkw2Ni44IDk2LjRMMTIxLjQgMTI1WiIgZmlsbD0iIzdkZmY1YSIvPjwvZz4KICA8cGF0aCBkPSJNMTE4LjYgMTI1TDE3My4yIDk2LjRMMTYwLjIgMTE0LjZaIiBmaWxsPSIjN2RmZjVhIi8+PHBhdGggZD0iTTc5LjggMTE0LjZMNjYuOCA5Ni40TDEyMS40IDEyNVoiIGZpbGw9IiM3ZGZmNWEiLz4KICA8cGF0aCBkPSJNMTM3LjIgMTE3LjQ2TDE2MC4xMyAxMDUuNDVMMTU0LjY3IDExMy4wOVoiIGZpbGw9IiNlOWZmZGYiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik04NS4zMyAxMTMuMDlMNzkuODcgMTA1LjQ1TDEwMi44IDExNy40NloiIGZpbGw9IiNlOWZmZGYiIG9wYWNpdHk9Ii44NSIvPjwvZz48L2c+PC9zdmc+";
 const MARKL="mark-large.webp";
+const MARKHU="mark-helmet-up.webp";
+const MARKHD="mark-helmet-down.webp";
 const PH={"bag":"ph-bag.jpg","bench":"ph-bench.jpg","cover":"ph-cover.jpg","gear":"ph-gear.jpg","guard":"ph-guard.jpg","medit":"ph-medit.jpg","pads":"ph-pads.jpg","range":"ph-range.jpg","run":"ph-run.jpg","spar":"ph-spar.jpg","team":"ph-team.jpg","wraps":"ph-wraps.jpg"};</script>
 <script>/* 000-core.js */
 'use strict';
@@ -5392,6 +5472,8 @@ function topbar(o){
   if(o.back){t.innerHTML=`<button class="back" data-back aria-label="Înapoi">${ic('back')}</button><div class="ttl">${esc(o.title||'')}</div>${o.right||''}`;
     $('[data-back]',t).onclick=()=>{if(navCount>1)history.back();else location.hash=o.back}}
   else t.innerHTML=`<div class="brand"><img class="mk" src="${MARK}" alt=""><span class="wm">OPERA<b>TOR</b></span></div>${o.right||''}`;
+  // the night-vision switch, on every screen (986-ops.js)
+  t.insertAdjacentHTML('beforeend',`<button class="nvg-b${S.set.nvg?' on':''}" data-nvg aria-label="Vedere de noapte" aria-pressed="${!!S.set.nvg}">${NVG_IC}</button>`);
 }
 const ROUTES=[];
 const route=(re,fn)=>ROUTES.push([re,fn]);
@@ -6398,6 +6480,7 @@ route(/^caiet(?:\/(\w+))?$/,(tab='jurnal')=>{
       <label class="chk"><input type="checkbox" data-set="voice" ${S.set.voice?'checked':''}><span><b>Vocea în română</b><br><small class="mu">${hasVoice()?'vocea română e disponibilă pe acest dispozitiv':'dispozitivul nu are o voce română instalată — uneltele folosesc doar sunete și text'}</small></span></label></div>
       <div class="row w mt"><button class="btn g sm" data-tv>${ic('vol','s')} Testează sunetul și vocea</button></div>
     <div class="sec"><h2>Animația de deschidere</h2></div><div class="seg" id="imode">${[['full','Completă'],['short','Scurtă'],['off','Oprită']].map(o=>`<button data-k="${o[0]}" class="${(S.set.intro||'full')===o[0]?'on':''}">${o[1]}</button>`).join('')}</div>
+    <div class="sec"><h2>Versiunea</h2></div><div class="card"><p class="mu" style="margin-top:0">Aplicația se actualizează singură când o deschizi cu internet. Dacă vezi totuși ceva vechi, apasă butonul: datele tale rămân.</p><button class="btn g" data-fu>${ic('redo','s')} Actualizează acum</button></div>
     <div class="sec"><h2>Copie de siguranță</h2></div>
       <div class="card"><p class="mu" style="margin-top:0">Totul (jurnal, lecții, obiective, bife) e salvat pe acest dispozitiv. Fă din când în când o copie, mai ales înainte să schimbi telefonul.</p>
       <div class="row w"><button class="btn g" data-ex>${ic('down','s')} Salvează copia</button><label class="btn g" style="cursor:pointer">${ic('up','s')} Încarcă o copie<input type="file" accept=".json,application/json" id="imp" hidden></label></div></div>
@@ -6606,95 +6689,370 @@ route(/^caiet(?:\/(\w+))?$/,(tab='jurnal')=>{
 })();
 
 /* 985-intro.js */
-/* Animația de deschidere, agresivă: tăietură bruscă pe poza operatorului, reticulul trântit în centru, trei focuri
-   (fulger, zguduitură, găuri cu fisuri ca în sticlă, scântei), apoi OPERATOR lovit literă cu literă, cu o sclipire de „glitch”.
-   La final, cătarea zboară în sigla din antet și ecranul se strânge ca un iris. */
-const INTRO={on:false,leaving:false,tm:[],forge:null};
-/* full mode: the sparks forge the mark first (0.45–1.25 s, see 984-forge.js), so everything else comes half a second later */
-const IN_SHOTS=[.95,1.17,1.42];
-const IN_OFF=.5;
-function introHTML(){
-  let ticks='';for(let i=0;i<60;i++){const a=(i*6-90)*Math.PI/180,big=i%5===0,r1=big?83:86,r2=92;
-    ticks+=`<line class="${big?'b':''}" x1="${(100+r1*Math.cos(a)).toFixed(2)}" y1="${(100+r1*Math.sin(a)).toFixed(2)}" x2="${(100+r2*Math.cos(a)).toFixed(2)}" y2="${(100+r2*Math.sin(a)).toFixed(2)}"/>`}
-  const W='OPERATOR'.split('').map((c,i)=>`<span style="--i:${i}" class="${i>=5?'g':''}">${c}</span>`).join('');
-  return `<div class="in-shk" id="inShk"><div class="in-ph" style="--ph:url('${PH.cover}')"></div><div class="in-scan"></div><canvas id="forgeCv"></canvas><canvas id="introCv"></canvas><div class="in-flash" id="inFlash"></div>
-  <div class="in-hud"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>
-  <div class="in-c"><div class="in-lw" id="inLw"><svg class="in-dial" viewBox="0 0 200 200"><g class="in-ticks">${ticks}</g><circle class="in-track" cx="100" cy="100" r="74"/>
-    <circle class="in-arc" cx="100" cy="100" r="74" pathLength="1" transform="rotate(-90 100 100)"/>
-    <g class="in-cross"><line x1="100" y1="34" x2="100" y2="58"/><line x1="100" y1="142" x2="100" y2="166"/><line x1="34" y1="100" x2="58" y2="100"/><line x1="142" y1="100" x2="166" y2="100"/></g></svg>
-    <img class="in-logo" id="inLogo" src="${MARKL}" alt="">
-    <span class="in-ring"></span><span class="in-ring r2"></span></div>
-    <div class="in-word">${W}</div><div class="in-bar"></div><div class="in-sub">Tragere · Tactică · CQB · Prim ajutor</div></div></div>
+/* Animația de deschidere, 2026-11-16 („fă tot ce ai zis pentru Operator”): o mini-operațiune de cinci secunde.
+   1. Imaginea dronei: un oraș văzut de sus, alb-negru, cu date pe margini; camera coboară și pătratul se fixează pe ușă.
+   2. Clic: ochelarii de noapte coboară; totul devine verde, prin două tuburi (sau, o zi din două, imagine termică).
+   3. Echipa de patru, lipită de perete; primul face semnul, ușa se deschide, grenada asurzitoare albește ecranul.
+   4. Din alb, punctele laser verzi formează lupul cu cască (scânteile Beast); ochelarii lui coboară și se aprind.
+   5. OPERATOR ștampilat cu literele de șablon, rândul de jos tastat, irisul se strânge spre sigla din antet.
+   Subtitluri radio pe tot parcursul, fără sunet pornit singur. Varianta scurtă: doar lupul, ochelarii și OPERATOR.
+   O atingere sare peste tot. Mișcare redusă: nimic. */
+const INTRO={on:false,leaving:false,tm:[],forge:null,raf:0};
+const OX_RADIO=[[.15,'DRONĂ: Ținta confirmată. Clădirea 3, ușa de est.'],[1.55,'ALFA 1: În poziție.'],[2.35,'ALFA 1: Execută. Execută. Execută.'],[3.7,'ALFA 1: Obiectiv asigurat.']];
+function introHTML(mode){
+  const W='OPERATOR'.split('').map((c,i)=>`<span style="--i:${i}">${c}</span>`).join('');
+  return `<div class="ox-shk" id="oxShk"><canvas id="oxCv"></canvas><canvas id="forgeCv"></canvas>
+  <div class="ox-tubes"></div><div class="ox-grain"></div><div class="ox-flash" id="oxFlash"></div>
+  <div class="ox-hud" id="oxHud"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i>
+    <span class="ox-rec"><b></b>REC · UAV-3</span><span class="ox-tl">ALT 120 M · 44°25′N 26°06′E</span><span class="ox-tr">0347Z</span><span class="ox-br" id="oxZoom">ZOOM 1.0×</span>
+    <div class="ox-lock" id="oxLock"><i></i><i></i><i></i><i></i><span>ȚINTĂ</span></div></div>
+  <div class="ox-c"><div class="ox-wolf" id="inLogo"><img class="ox-up" src="${MARKHU}" alt=""><img class="ox-dn" src="${MARKHD}" alt=""></div>
+    <div class="ox-word">${W}</div><div class="ox-sub" id="oxSub"></div></div>
+  <div class="ox-radio" id="oxRadio"></div></div>
   <div class="in-skip">atinge pentru a intra</div>`;
 }
-/* scântei, jar care urcă și găurile cu fisuri, desenate pe un canvas peste poză */
-function introFx(mode){
-  const cv=$('#introCv');if(!cv||!cv.getContext)return;
-  const ctx=cv.getContext('2d'),dpr=Math.min(2,devicePixelRatio||1),W=cv.width=innerWidth*dpr,H=cv.height=innerHeight*dpr,full=mode==='full',k=full?1:.45;
-  /* B8: reduce particles on low-end devices (≤4 cores or mobile) */
-  const lowEnd=(navigator.hardwareConcurrency||4)<=4||innerWidth<768;
-  const emCount=lowEnd?(full?32:18):(full?64:34);
-  const sparkBig=lowEnd?(full?35:20):(full?70:40);
-  const sparkSm=lowEnd?(full?14:8):(full?26:16);
-  const crackN=lowEnd?5:(7+Math.floor(Math.random()*4));
-  const em=Array.from({length:emCount},()=>({x:Math.random()*W,y:H*(.3+Math.random()*.8),r:(.5+Math.random()*1.4)*dpr,vx:(Math.random()-.5)*40*dpr,vy:-(30+Math.random()*90)*dpr,
-    a:.25+Math.random()*.6,tw:Math.random()*6.283,c:pick(['#ffb347','#ffd9a0','#ffffff','#ff7a3d']),d:.15+Math.random()*.9}));
-  const holes=[],sp=[],OFF=[[-6,4],[5,-3],[0,0]];let si=0;const t0=performance.now();let last=t0;
-  const shot=i=>{const lg=$('#inLogo');if(!lg)return;const r=lg.getBoundingClientRect(),s=r.width/112;
-    const x=(r.left+r.width*.5+OFF[i][0]*s)*dpr,y=(r.top+r.height*.6+OFF[i][1]*s)*dpr,big=i===IN_SHOTS.length-1;
-    holes.push({x,y,big,t:(performance.now()-t0)/1000,cr:Array.from({length:crackN},()=>{const a=Math.random()*6.283;return {a,b:a+(Math.random()-.5)*.7,L:(34+Math.random()*90)*dpr*s,m:.35+Math.random()*.35}})});
-    for(let j=0,n=big?sparkBig:sparkSm;j<n;j++){const an=Math.random()*6.283,v=(160+Math.random()*(big?520:320))*dpr;
-      sp.push({x,y,vx:Math.cos(an)*v,vy:Math.sin(an)*v,l:0,L:.3+Math.random()*.5,w:(.7+Math.random()*1.3)*dpr,c:big?(j%3?'#b9ffd2':'#ffffff'):(j%3?'#ffcf7a':'#ffffff')})}};
-  const frame=now=>{if(!INTRO.on)return;const t=(now-t0)/1000,dt=Math.min(.05,(now-last)/1000);last=now;const out=INTRO.leaving?clamp(1-(now-INTRO.leftAt)/320,0,1):1;
-    while(si<IN_SHOTS.length&&t>=IN_SHOTS[si]*k){shot(si);si++}
-    ctx.clearRect(0,0,W,H);ctx.globalCompositeOperation='source-over';ctx.lineCap='round';
-    holes.forEach(o=>{const g=clamp((t-o.t)/.12,0,1);ctx.globalAlpha=.7*out;ctx.strokeStyle='rgba(225,240,245,.8)';ctx.lineWidth=.9*dpr;ctx.beginPath();
-      o.cr.forEach(c=>{const L=c.L*g,mx=o.x+Math.cos(c.a)*L*c.m,my=o.y+Math.sin(c.a)*L*c.m;ctx.moveTo(o.x,o.y);ctx.lineTo(mx,my);ctx.lineTo(mx+Math.cos(c.b)*L*(1-c.m),my+Math.sin(c.b)*L*(1-c.m))});ctx.stroke();
-      ctx.globalAlpha=.35*out*g;ctx.beginPath();ctx.arc(o.x,o.y,(o.big?17:12)*dpr,0,6.283);ctx.stroke();
-      const R=(o.big?6:4.5)*dpr,rg=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,R);rg.addColorStop(0,'#000');rg.addColorStop(.62,'#060606');rg.addColorStop(1,'rgba(230,240,245,.9)');
-      ctx.globalAlpha=out;ctx.fillStyle=rg;ctx.beginPath();ctx.arc(o.x,o.y,R,0,6.283);ctx.fill()});
-    ctx.globalCompositeOperation='lighter';
-    em.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.tw+=dt*3;if(p.y<-10){p.y=H+10;p.x=Math.random()*W}
-      const al=p.a*clamp((t-p.d)/.6,0,1)*out*(.5+.5*Math.sin(p.tw));if(al<.01)return;ctx.globalAlpha=al;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fill()});
-    sp.forEach(p=>{if(p.l>=p.L)return;p.l+=dt;const f=Math.pow(.05,dt);p.vx*=f;p.vy*=f;p.vy+=80*dpr*dt;const x0=p.x,y0=p.y;p.x+=p.vx*dt;p.y+=p.vy*dt;
-      const al=(1-p.l/p.L)*out;if(al<.02)return;ctx.globalAlpha=al;ctx.strokeStyle=p.c;ctx.lineWidth=p.w;ctx.beginPath();ctx.moveTo(x0-(p.x-x0)*2.4,y0-(p.y-y0)*2.4);ctx.lineTo(p.x,p.y);ctx.stroke()});
-    requestAnimationFrame(frame)};
-  requestAnimationFrame(frame);
+/* ── scenele pe canvas ── */
+function oxCity(seed){const r=(i)=>{const v=Math.sin(seed*99+i*12.9898)*43758.5453;return v-Math.floor(v)};const B=[];
+  for(let gx=-6;gx<=6;gx++)for(let gy=-6;gy<=6;gy++){if((gx+gy*3)%5===0)continue;B.push([gx*70+r(gx*31+gy)*14,gy*70+r(gx+gy*17)*14,30+r(gx*7+gy)*26,30+r(gy*5+gx)*26,.25+r(gx*3+gy*11)*.5])}return B}
+function oxOperator(c,x,y,s,col,rim,lead,raise){
+  c.save();c.translate(x,y);c.scale(s,s);c.fillStyle=col;c.strokeStyle=rim;c.lineWidth=1.6/s*1.2;c.lineJoin='round';
+  // legs, torso leaning forward, helmet with goggles, rifle at the ready
+  c.beginPath();c.moveTo(-6,0);c.lineTo(-10,-30);c.lineTo(-2,-30);c.lineTo(2,-6);c.lineTo(8,0);c.lineTo(14,0);c.lineTo(8,-32);c.lineTo(-2,-32);c.closePath();c.fill();c.stroke();
+  c.beginPath();c.moveTo(-12,-30);c.quadraticCurveTo(-14,-56,-2,-64);c.lineTo(12,-62);c.quadraticCurveTo(16,-44,10,-30);c.closePath();c.fill();c.stroke();
+  c.beginPath();c.arc(4,-72,9,0,Math.PI*2);c.fill();c.stroke();
+  c.beginPath();c.moveTo(-5,-75);c.quadraticCurveTo(4,-86,13,-75);c.closePath();c.fill();c.stroke();
+  c.fillStyle=rim;c.fillRect(10,-76,6,3);
+  if(raise){c.beginPath();c.moveTo(-6,-58);c.lineTo(-14,-86);c.lineWidth=5;c.strokeStyle=col;c.stroke();c.lineWidth=1.6;c.strokeStyle=rim;c.stroke()}
+  c.beginPath();c.moveTo(-2,-52);c.lineTo(34,-58);c.lineWidth=4;c.strokeStyle=rim;c.stroke();
+  if(lead){c.globalCompositeOperation='lighter';c.strokeStyle='rgba(160,255,140,.9)';c.lineWidth=1.2;c.beginPath();c.moveTo(34,-58);c.lineTo(900,-140);c.stroke()}
+  c.restore();
 }
-/* un foc: fulger, zguduitură, reculul reticulului, o bufnitură scurtă */
-function introShot(i){
-  const big=i===IN_SHOTS.length-1,f=$('#inFlash'),s=$('#inShk'),lw=$('#inLw');
-  if(f){f.classList.toggle('g',big);f.animate([{opacity:0},{opacity:big?.95:.62,offset:.12},{opacity:0}],{duration:big?440:210,easing:'ease-out'})}
-  const m=big?14:8;
-  if(s)s.animate([{transform:'none'},{transform:`translate(${-m}px,${m*.6}px) rotate(-.5deg)`},{transform:`translate(${m*.8}px,${-m*.5}px) rotate(.35deg)`},{transform:`translate(${-m*.4}px,${m*.3}px)`},{transform:'none'}],{duration:big?340:210,easing:'ease-out'});
-  if(lw)lw.animate([{transform:'none'},{transform:`translateY(${big?-11:-7}px) rotate(-2.5deg) scale(1.05)`},{transform:'none'}],{duration:big?260:180,easing:'cubic-bezier(.2,.8,.2,1)'});
-  beep(big?58:74,big?.16:.1,.6,'sine');beep(1700,.018,.12,'square');
+function introFx(mode,thermal){
+  const cv=$('#oxCv');if(!cv||!cv.getContext)return;
+  const c=cv.getContext('2d'),dpr=Math.min(2,devicePixelRatio||1),W=innerWidth,H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;
+  const city=oxCity(new Date().getDate()),t0=performance.now();const zoomEl=$('#oxZoom');
+  const frame=now=>{if(!INTRO.on)return;const t=(now-t0)/1000;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
+    if(mode==='full'&&t<1.15){
+      // 1. the drone: a grey city from above, the camera dropping onto building 3
+      const z=1+Math.pow(t/1.15,2)*3.2;c.fillStyle='#16191c';c.fillRect(0,0,W,H);c.save();c.translate(W/2,H*.46);c.scale(z,z);c.rotate(-.12+t*.05);
+      c.strokeStyle='#2c3136';c.lineWidth=10/z;for(let k=-6;k<=6;k++){c.beginPath();c.moveTo(k*70-35,-460);c.lineTo(k*70-35,460);c.stroke();c.beginPath();c.moveTo(-460,k*70-35);c.lineTo(460,k*70-35);c.stroke()}
+      city.forEach(([x,y,w,h,g])=>{c.fillStyle=`rgba(${Math.round(120+g*90)},${Math.round(124+g*90)},${Math.round(128+g*90)},1)`;c.fillRect(x-w/2,y-h/2,w,h);c.fillStyle='rgba(0,0,0,.35)';c.fillRect(x-w/2+w*.6,y-h/2,w*.4,h)});
+      c.fillStyle='#d9dde0';c.fillRect(-18,-14,36,28);c.fillStyle='#000';c.fillRect(16,-4,3,8);c.restore();
+      if(zoomEl)zoomEl.textContent='ZOOM '+z.toFixed(1).replace('.',',')+'×';
+    }else if(mode==='full'&&t<3.05){
+      // 2–3. through the goggles (or the thermal sight): the corridor, the stack, the door, the lasers
+      const u=t-1.15,green=!thermal;
+      const bg=green?'#03140a':'#0a0614',wall=green?'#0b3a17':'#1c1030',col=green?'#06200c':'#fff3c4',rim=green?'#7dff5a':'#ff8a2a';
+      c.fillStyle=bg;c.fillRect(0,0,W,H);const fy=H*.6;c.fillStyle=wall;c.fillRect(0,H*.32,W,fy-H*.32);
+      c.strokeStyle=green?'rgba(125,255,90,.25)':'rgba(255,170,80,.25)';c.lineWidth=2;c.beginPath();c.moveTo(0,fy);c.lineTo(W,fy);c.stroke();
+      // the door, opening at 2.6 s
+      const dx=W*.66,dw=W*.15,open=clamp((t-2.6)/.18,0,1);c.fillStyle=green?'#010603':'#020104';c.fillRect(dx,H*.4,dw,fy-H*.4);
+      c.fillStyle=green?'#145a24':'#3a2050';c.fillRect(dx,H*.4,dw*(1-open*.85),fy-H*.4);c.strokeStyle=rim;c.lineWidth=1.5;c.strokeRect(dx,H*.4,dw,fy-H*.4);
+      // the four, sliding into the stack
+      const s=clamp(Math.min(H/560,W/330),.8,1.6),slide=clamp(u/.6,0,1);for(let k=3;k>=0;k--){const x=dx-24*s-k*30*s-(1-slide)*(140+k*40)*s;
+        if(thermal){c.save();c.shadowColor='#ff6a1f';c.shadowBlur=18;oxOperator(c,x,fy,s,col,rim,false,false);c.restore()}else oxOperator(c,x,fy,s,col,rim,k===0,k===0&&t>2.1&&t<2.55)}
+      // the second laser sweeping
+      if(green){c.globalCompositeOperation='lighter';c.strokeStyle='rgba(125,255,90,.55)';c.lineWidth=1;c.beginPath();c.moveTo(dx-28*s-34*s+30*s,fy-58*s);c.lineTo(W,H*.35+Math.sin(u*3)*H*.2);c.stroke();c.globalCompositeOperation='source-over'}
+      // noise of the tube or the sensor
+      c.fillStyle=green?'rgba(170,255,150,.06)':'rgba(255,255,255,.05)';for(let i=0;i<220;i++)c.fillRect(Math.random()*W,Math.random()*H,1.5,1.5);
+    }
+    INTRO.raf=requestAnimationFrame(frame)};
+  INTRO.raf=requestAnimationFrame(frame);
 }
+function oxType(el,text,speed=28){if(!el)return;el.textContent='';let i=0;const step=()=>{if(!INTRO.on||!el.isConnected)return;el.textContent=text.slice(0,++i);if(i<text.length)INTRO.tm.push(setTimeout(step,speed))};step()}
 function introStart(){
   const mode=['full','short','off'].includes(S.set.intro)?S.set.intro:'full';
   if(mode==='off'||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const el=document.createElement('div');el.className='intro'+(mode==='short'?' short':'');el.id='intro';el.setAttribute('aria-hidden','true');el.innerHTML=introHTML();
-  document.body.appendChild(el);INTRO.on=true;INTRO.leaving=false;INTRO.tm.forEach(clearTimeout);INTRO.tm=[];introFx(mode);
-  const k=mode==='full'?1:.45,off=mode==='full'&&window.BeastForge?IN_OFF:0;
-  if(off){el.classList.add('forge');INTRO.forge=BeastForge.create({canvas:$('#forgeCv'),mark:MARKL,stage:$('#inLogo'),color:[60,180,40],hot:[125,255,90],count:1800,onImpact(){el.classList.add('hit')}});INTRO.forge.start()}
-  IN_SHOTS.forEach((t,i)=>INTRO.tm.push(setTimeout(()=>{if(INTRO.on&&!INTRO.leaving)introShot(i)},(t*k+off)*1000)));
-  el.addEventListener('click',introExit);INTRO.tm.push(setTimeout(introExit,(mode==='full'?3900:1700)+off*1000));
+  // a day in the night-vision green, a day in the thermal sight
+  const thermal=new Date().getDate()%2===0;
+  const el=document.createElement('div');el.className='intro ox '+mode+(thermal?' th':'');el.id='intro';el.setAttribute('aria-hidden','true');el.innerHTML=introHTML(mode);
+  document.body.appendChild(el);INTRO.on=true;INTRO.leaving=false;INTRO.tm.forEach(clearTimeout);INTRO.tm=[];
+  const at=(s,f)=>INTRO.tm.push(setTimeout(()=>{if(INTRO.on&&!INTRO.leaving)f()},s*1000));
+  const radio=$('#oxRadio');
+  if(mode==='full'){
+    introFx(mode,thermal);
+    OX_RADIO.forEach(([s,txt])=>at(s,()=>oxType(radio,txt,22)));
+    at(.75,()=>el.classList.add('lock'));
+    at(1.15,()=>{el.classList.add('nvg');beep(2400,.03,.25,'square')});
+    at(2.85,()=>{const f=$('#oxFlash');if(f)f.animate([{opacity:0},{opacity:1,offset:.08},{opacity:1,offset:.35},{opacity:0}],{duration:900,easing:'ease-out'});beep(60,.25,.6,'sine');
+      const s=$('#oxShk');if(s)s.animate([{transform:'none'},{transform:'translate(-12px,8px)'},{transform:'translate(10px,-6px)'},{transform:'none'}],{duration:320})});
+    at(3.0,()=>{el.classList.add('wolf');if(window.BeastForge){INTRO.forge=BeastForge.create({canvas:$('#forgeCv'),mark:MARKHU,stage:$('.ox-up'),color:[60,180,40],hot:[125,255,90],count:1400,onImpact(){el.classList.add('hit')}});INTRO.forge.start()}else el.classList.add('hit')});
+    at(4.35,()=>{el.classList.add('down');beep(1900,.03,.2,'square')});
+    at(4.55,()=>{el.classList.add('word');oxType($('#oxSub'),'Tragere · Tactică · CQB · Prim ajutor',26)});
+    at(6.2,introExit);
+  }else{
+    el.classList.add('wolf','hit');
+    at(.35,()=>el.classList.add('down'));
+    at(.55,()=>{el.classList.add('word');oxType($('#oxSub'),'Tragere · Tactică · CQB · Prim ajutor',14)});
+    at(1.75,introExit);
+  }
+  el.addEventListener('click',introExit);
 }
 function introExit(){
-  if(!INTRO.on||INTRO.leaving)return;INTRO.leaving=true;INTRO.leftAt=performance.now();INTRO.tm.forEach(clearTimeout);INTRO.tm=[];
+  if(!INTRO.on||INTRO.leaving)return;INTRO.leaving=true;INTRO.tm.forEach(clearTimeout);INTRO.tm=[];
   if(INTRO.forge){INTRO.forge.burst();setTimeout(()=>{if(INTRO.forge){INTRO.forge.destroy();INTRO.forge=null}},700)}
   const intro=$('#intro'),il=$('#inLogo');const hl=$$('.brand .mk').find(x=>x.offsetParent!==null&&x.getBoundingClientRect().width>0);
-  const finish=()=>{INTRO.on=false;if(INTRO.forge){INTRO.forge.destroy();INTRO.forge=null}if(intro&&intro.isConnected)intro.remove();if(hl){hl.classList.add('land');setTimeout(()=>hl.classList.remove('land'),520)}};
+  const finish=()=>{INTRO.on=false;cancelAnimationFrame(INTRO.raf);if(INTRO.forge){INTRO.forge.destroy();INTRO.forge=null}if(intro&&intro.isConnected)intro.remove();if(hl){hl.classList.add('land');setTimeout(()=>hl.classList.remove('land'),520)}};
   try{
-    if(!hl)throw 0;const r1=il.getBoundingClientRect(),r2=hl.getBoundingClientRect(),cx=r2.left+r2.width/2,cy=r2.top+r2.height/2;
+    if(!hl||!il)throw 0;intro.classList.add('wolf','hit','down');const r1=il.getBoundingClientRect(),r2=hl.getBoundingClientRect(),cx=r2.left+r2.width/2,cy=r2.top+r2.height/2;
     const dx=cx-(r1.left+r1.width/2),dy=cy-(r1.top+r1.height/2),sc=r2.width/r1.width;
     il.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${dx}px,${dy}px) scale(${sc})`}],{duration:520,easing:'cubic-bezier(.7,0,.2,1)',fill:'forwards'});
-    intro.querySelectorAll('.in-word,.in-bar,.in-sub,.in-skip,.in-ring,.in-dial,.in-hud').forEach(e=>e.animate([{opacity:1},{opacity:0,transform:'translateY(14px)'}],{duration:220,fill:'forwards'}));
-    const ph=intro.querySelector('.in-ph');if(ph)ph.animate([{transform:'scale(1.02)'},{transform:'scale(1.14)'}],{duration:640,easing:'cubic-bezier(.6,0,.2,1)',fill:'forwards'});
+    intro.querySelectorAll('.ox-word,.ox-sub,.in-skip,.ox-radio').forEach(e=>e.animate([{opacity:1},{opacity:0,transform:'translateY(14px)'}],{duration:220,fill:'forwards'}));
     const a=intro.animate([{clipPath:`circle(${Math.hypot(innerWidth,innerHeight)}px at ${cx}px ${cy}px)`},{clipPath:`circle(${r2.width/2}px at ${cx}px ${cy}px)`}],{duration:580,delay:50,easing:'cubic-bezier(.75,0,.25,1)',fill:'forwards'});
     a.onfinish=finish;setTimeout(()=>{if(intro.isConnected)finish()},1100);
-  }catch(e){intro.animate([{opacity:1},{opacity:0}],{duration:300,fill:'forwards'}).onfinish=finish}
+  }catch(e){if(intro)intro.animate([{opacity:1},{opacity:0}],{duration:300,fill:'forwards'}).onfinish=finish;else finish()}
 }
+
+/* 986-ops.js */
+/* OPS, 2026-11-16 („fă tot ce ai zis pentru Operator”):
+   - vederea de noapte: un buton în antet coboară ochelarii peste toată aplicația (verde, linii, tuburi);
+   - Azi ca ordin de operații: SITUAȚIE, MISIUNE, EXECUȚIE, cu ștampilă, ora Zulu și textul tastat;
+   - harta operațiunilor: modulele grupate în șase zone pe o hartă topografică, aprinse după lecțiile făcute;
+   - peretele cu embleme: un petic pentru fiecare modul terminat, cu ceremonie;
+   - radarul abilităților: șase axe din lecții, teste și exerciții;
+   - repetiția spațiată: întrebările greșite revin după 1, 3 și 7 zile („Repetă”);
+   - simulatorul TCCC (MARCH), jocul de navigație și graficul cronometrului cu microfon.
+   Totul pentru antrenament, după principiile publice (TCCC, Stop the Bleed, FM 3-25.26); nu înlocuiește un curs. */
+
+/* ───────────── zonele, abilitățile ───────────── */
+const SKILLS=[
+  {k:'tr',t:'Tragere',zone:'Poligonul',mods:['tragere','operatii','gebr','tps','pistol','carabina'],re:/dry|tragere|cronometru|metronom|priz|focaliz|clicuri|traiectori/i,x:20,y:20},
+  {k:'cqb',t:'CQB și echipă',zone:'Clădirea',mods:['cqb','echipa'],re:/cqb|decizi|ooda|echip/i,x:78,y:18},
+  {k:'med',t:'Medical',zone:'Cortul medical',mods:['march','atentie'],re:/tccc|march|prim ajutor|smart|garou/i,x:80,y:64},
+  {k:'nav',t:'Navigație',zone:'Pădurea',mods:['nav'],re:/naviga|azimut|busol|relief/i,x:50,y:84},
+  {k:'min',t:'Minte',zone:'Tabăra',mods:['start','reguli','minte'],re:/medita|respira|vizualiz|test|repet/i,x:20,y:62},
+  {k:'fiz',t:'Fizic',zone:'Pista',mods:['corp','selectie'],re:/alerg|marș|forț|fizic|antrenament fizic/i,x:50,y:42},
+];
+const skillLes=s=>L.filter(l=>s.mods.includes(l.m));
+function skillScore(s){
+  const ls=skillLes(s),done=ls.filter(l=>S.done[l.id]).length,frac=ls.length?done/ls.length:0;
+  const since=new Date(Date.now()-30*864e5),recent=S.log.filter(e=>parseYmd(e.d)>=since&&s.re.test(e.type+' '+(e.note||''))).length;
+  return Math.round(frac*70+Math.min(30,recent*5));
+}
+
+/* ───────────── vederea de noapte ───────────── */
+function nvgApply(){document.documentElement.classList.toggle('nvgm',!!S.set.nvg)}
+function nvgToggle(){
+  const on=!S.set.nvg;S.set.nvg=on;save('set');
+  const fx=document.createElement('div');fx.className='nvg-drop'+(on?'':' up');document.body.appendChild(fx);
+  beep(on?2400:1600,.03,.25,'square');
+  setTimeout(()=>{nvgApply();$$('.nvg-b').forEach(b=>{b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)})},on?260:200);setTimeout(()=>fx.remove(),700);
+}
+const NVG_IC='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13a4 4 0 1 0 8 0v-2H3zM13 11v2a4 4 0 1 0 8 0v-2zM11 12h2M7 11V7h10v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+document.addEventListener('click',e=>{if(e.target.closest('[data-nvg]'))nvgToggle();if(e.target.closest('[data-fu]'))forceUpdate()});
+/* "Actualizează acum": drops the service worker and the caches (not the data, which is in localStorage), then reloads */
+async function forceUpdate(){try{const rs=await navigator.serviceWorker?.getRegistrations?.()||[];await Promise.all(rs.map(r=>r.unregister()));const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}catch(e){}location.reload()}
+
+/* ───────────── ordinul de operații pe Azi ───────────── */
+function zulu(){const d=new Date();return pad(d.getUTCHours())+pad(d.getUTCMinutes())+'Z'}
+function opordHTML(){
+  const hs=habitStats(),pd=planDay(),p=PLAN30[pd],nextLes=L.find(l=>!S.done[l.id]),due=srsDue().length;
+  const n=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/864e5);
+  const grid=`${String.fromCharCode(65+(n%20))}${String.fromCharCode(75+(n%12))} ${String(1000+(n*137)%9000).slice(0,4)} ${String(1000+(n*311)%9000).slice(0,4)}`;
+  const exe=[];
+  if(S.plan.start&&p)exe.push(`Provocarea, ziua ${pd+1}: ${p.t}`);
+  else if(!S.plan.start)exe.push('Pornește provocarea de 30 de zile');
+  if(nextLes)exe.push(`Lecția: ${nextLes.t}`);
+  if(due)exe.push(`Repetă ${plural(due,'întrebare greșită','întrebări greșite')}`);
+  exe.push('Notează sesiunea în jurnal');
+  const mission=S.plan.start&&p?p.t:nextLes?nextLes.t:'Menții nivelul: o unealtă și o lecție recapitulată';
+  return `<section class="opord" aria-label="Ordinul de operații de azi"><div class="op-stamp">Antrenament · uz intern</div>
+    <div class="op-h"><b>ORDIN DE OPERAȚII</b><span>${zulu()} · ${grid}</span></div>
+    <div class="op-r"><i>1</i><div><b>Situație</b><p>${hs.n} din 66 de zile de antrenament${hs.cur>1?`, ${hs.cur} la rând`:''}. ${hs.today?'Azi ești deja bifat.':'Azi nu ai nimic notat.'}</p></div></div>
+    <div class="op-r"><i>2</i><div><b>Misiune</b><p class="op-type" data-type="${esc(mission)}">${esc(mission)}</p></div></div>
+    <div class="op-r"><i>3</i><div><b>Execuție</b><ol>${exe.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div></div>
+    ${due?`<button class="btn sm" data-go="#/repeta">${ic('loop','s')} Repetă acum (${due})</button>`:''}</section>`;
+}
+function opordMount(root){const el=$('.op-type',root);if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const t=el.dataset.type;el.textContent='';let i=0;const step=()=>{if(!el.isConnected)return;el.textContent=t.slice(0,++i);if(i<t.length)setTimeout(step,24)};setTimeout(step,250)}
+
+/* ───────────── radarul ───────────── */
+function radarHTML(){
+  const R=78,c=100,n=SKILLS.length,pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [c+Math.cos(a)*r,c+Math.sin(a)*r]};
+  const sc=SKILLS.map(skillScore),poly=sc.map((v,i)=>pt(i,R*Math.max(.04,v/100)).map(x=>x.toFixed(1)).join(',')).join(' ');
+  const rings=[.25,.5,.75,1].map(k=>`<polygon points="${SKILLS.map((_,i)=>pt(i,R*k).map(x=>x.toFixed(1)).join(',')).join(' ')}" class="rd-g"/>`).join('');
+  const axes=SKILLS.map((s,i)=>{const [x,y]=pt(i,R),[lx,ly]=pt(i,R+16);return `<line x1="${c}" y1="${c}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="rd-a"/><text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${s.t.split(' ')[0]}</text>`}).join('');
+  const weak=SKILLS[sc.indexOf(Math.min(...sc))];
+  return `<div class="card radar"><div class="row"><div class="sp"><small class="mu">Profilul tău de operator</small><h3 style="margin:2px 0 0">Radarul abilităților</h3></div><b class="ac" style="font-size:1.4rem">${Math.round(sc.reduce((a,b)=>a+b,0)/n)}</b></div>
+    <svg viewBox="-20 -6 240 212" class="rd">${rings}${axes}<polygon points="${poly}" class="rd-p"/>${sc.map((v,i)=>{const [x,y]=pt(i,R*Math.max(.04,v/100));return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" class="rd-d"/>`}).join('')}</svg>
+    <p class="mu" style="margin:4px 0 0;font-size:.88rem">Din lecțiile făcute (70%) și exercițiile din ultimele 30 de zile (30%). Cel mai slab acum: <b>${esc(weak.t)}</b> (${esc(weak.zone)}).</p>
+    <button class="btn g sm mt" data-go="#/modul/${weak.mods.find(m=>MODS.some(x=>x.id===m))}">Întărește ${esc(weak.t.toLowerCase())}</button></div>`;
+}
+
+/* ───────────── harta operațiunilor ───────────── */
+function opsMapHTML(){
+  const topo=Array.from({length:9},(_,i)=>`<path d="M${-20+i*8} ${30+i*14}C${60+i*6} ${-10+i*16} ${120-i*4} ${70+i*10} ${220} ${20+i*18}" class="om-t"/>`).join('');
+  const zones=SKILLS.map(s=>{const ls=skillLes(s),dn=ls.filter(l=>S.done[l.id]).length,f=ls.length?dn/ls.length:0;const x=s.x*3.4,y=s.y*2.5+8;
+    return `<g class="om-z ${f>=1?'full':f>0?'part':''}" data-go="#/modul/${s.mods.find(m=>MODS.some(x=>x.id===m))}" style="--f:${f.toFixed(3)}">
+      <circle cx="${x}" cy="${y}" r="22" class="om-c"/><circle cx="${x}" cy="${y}" r="22" class="om-v" pathLength="100" transform="rotate(-90 ${x} ${y})"/>
+      <text x="${x}" y="${y+1}" class="om-n">${Math.round(f*100)}%</text><text x="${x}" y="${y+36}" class="om-l">${esc(s.zone)}</text></g>`}).join('');
+  const route=SKILLS.map(s=>`${s.x*3.4},${s.y*2.5+8}`).join(' ');
+  return `<div class="opsmap"><div class="om-h"><b>HARTA OPERAȚIUNILOR</b><span>${L.filter(l=>S.done[l.id]).length}/${L.length} lecții</span></div>
+    <svg viewBox="0 0 340 260" class="om"><g transform="scale(1.7 1.85)">${topo}</g><polyline points="${route}" class="om-r"/>${zones}</svg></div>`;
+}
+
+/* ───────────── embleme ───────────── */
+const PATCH_SHAPE=['M50 4 92 26v48L50 96 8 74V26Z','M50 4a46 46 0 1 0 0.1 0Z','M14 10h72l8 40-8 40H14L6 50Z','M50 4 96 50 50 96 4 50Z'];
+function patchSVG(m,k,on){const sh=PATCH_SHAPE[k%PATCH_SHAPE.length];
+  return `<svg viewBox="0 0 100 100" class="patch ${on?'on':''}"><path d="${sh}" class="pt-b"/><path d="${sh}" class="pt-s" transform="translate(50 50) scale(.86) translate(-50 -50)"/>
+    <g transform="translate(34 24) scale(1.35)" class="pt-i">${(ic(m.ic).match(/<svg[^>]*>([\s\S]*)<\/svg>/)||[])[1]||''}</g>
+    <text x="50" y="78" class="pt-t">${esc(m.t.split(/[—\s]/)[0].toUpperCase().slice(0,10))}</text></svg>`}
+const patchEarned=()=>MODS.filter(m=>modLes(m.id).length&&modDone(m.id)===modLes(m.id).length).map(m=>m.id);
+function patchWallHTML(){const got=patchEarned();
+  return `<div class="sec"><h2>Peretele cu embleme</h2><small class="mu">${got.length}/${MODS.length}</small></div>
+  <div class="pwall">${MODS.map((m,k)=>`<button class="pw" data-go="#/modul/${m.id}">${patchSVG(m,k,got.includes(m.id))}<small>${esc(m.t.split('—')[0].trim())}</small></button>`).join('')}</div>`}
+function patchCheck(){
+  const got=patchEarned();
+  if(!Array.isArray(S.set.patches)){S.set.patches=got;save('set');return}
+  const fresh=got.filter(id=>!S.set.patches.includes(id));if(!fresh.length)return;
+  S.set.patches=got;save('set');const m=MODS.find(x=>x.id===fresh[0]);
+  const el=document.createElement('div');el.className='pt-cel';el.innerHTML=`<div class="pt-core">${patchSVG(m,MODS.indexOf(m),true)}<small>Emblemă nouă</small><h2>${esc(m.t)}</h2><p>Toate lecțiile modulului sunt făcute. Pune-o pe perete.</p></div><p class="pt-tap">atinge ca să închizi</p>`;
+  document.body.appendChild(el);bell(.3,660);el.onclick=()=>{el.classList.add('out');setTimeout(()=>el.remove(),400)};setTimeout(()=>el.isConnected&&el.click(),6000);
+}
+
+/* ───────────── repetiția spațiată ───────────── */
+const SRS_GAP=[1,3,7];
+function srsAll(){return S.set.srs||(S.set.srs={})}
+function srsDue(){const t=ymd();return Object.entries(srsAll()).filter(([,v])=>v.due<=t)}
+function srsMark(lid,qi,ok){const k=lid+':'+qi,a=srsAll(),cur=a[k];
+  if(!ok){a[k]={lid,qi,box:0,due:ymd(new Date(Date.now()+864e5))}}
+  else if(cur){const box=cur.box+1;if(box>=SRS_GAP.length)delete a[k];else a[k]={...cur,box,due:ymd(new Date(Date.now()+SRS_GAP[box]*864e5))}}
+  save('set')}
+const _bindQuiz=bindQuiz;
+bindQuiz=function(root,l,onAll){
+  _bindQuiz(root,l,onAll);
+  $$('.qb',root).forEach(b=>{const qi=+b.dataset.q,q=l.q[qi];const owner=l.id?LES[l.id]:L.find(x=>x.q&&x.q.includes(q));if(!owner)return;const oqi=owner.q.indexOf(q);
+    $$('.opt',b).forEach(o=>o.addEventListener('click',()=>{if(b.dataset.srs)return;b.dataset.srs='1';srsMark(owner.id,oqi,!b.querySelector('.opt.n'))}))});
+};
+route(/^repeta$/,()=>{
+  const due=srsDue();
+  const html=`<h1>Repetă</h1><p class="mu" style="margin-top:6px">Întrebările greșite revin după 1, 3 și 7 zile. Corect de trei ori la rând și ies din listă.</p><div id="rq" class="mt"></div>`;
+  return {back:'#/azi',title:'Repetă',html,mount(r){
+    const host=$('#rq',r);let i=0,ok=0;
+    const show=()=>{if(i>=due.length){host.innerHTML=due.length?`<div class="card hl ctr"><div class="big">${ok}/${due.length}</div><p class="mu">Gata pe azi. Cele greșite revin mâine.</p><button class="btn g mt" data-go="#/azi">Înapoi la Azi</button></div>`:'<div class="empty">Nimic de repetat azi. Greșelile din teste apar aici a doua zi.</div>';if(due.length)logSession('Repetare',3,`Repetare: ${ok}/${due.length}`);return}
+      const [,v]=due[i],l=LES[v.lid],q=l&&l.q&&l.q[v.qi];if(!q){i++;show();return}
+      host.innerHTML=`<div class="row mb"><span class="pill">${i+1} / ${due.length}</span><span class="sp"></span><small class="mu">din: ${esc(l.t)}</small></div><div class="card quiz"><div class="qb" data-q="0"><div class="qq">${esc(q[0])}</div>${q[1].map((o,k)=>`<button class="opt" data-o="${k}">${esc(o)}</button>`).join('')}<div class="why hide"></div></div></div><button class="btn blk mt hide" data-next>Următoarea</button>`;
+      bindQuiz(host,{q:[q]},n=>{ok+=n;$('[data-next]',host).classList.remove('hide')});$('[data-next]',host).onclick=()=>{i++;show();scrollTo(0,0)};
+    };show();
+  }};
+});
+
+/* ───────────── simulatorul TCCC ───────────── */
+const TCCC=[
+  {t:'Rană prin împușcare la coapsă',s:'Un coechipier e lovit în coapsa dreaptă în timpul unui exercițiu de foc. Sângele țâșnește ritmic și pantalonul se îmbibă repede. E conștient, vorbește, respiră normal.',
+   steps:[['Ieși din pericol: acoperire, apoi te ocupi de rănit','În foc, primul lucru e să nu fie încă un rănit. Îngrijirea începe după ce sunteți la adăpost.'],
+     ['Garou sus și strâns pe coapsă, până se oprește sângerarea','Sângerarea masivă a unui membru omoară în minute: garoul, „sus și strâns”, apoi îl strângi până se oprește.'],
+     ['Verifici căile aeriene: vorbește, deci sunt libere','Dacă vorbește clar, căile aeriene sunt deschise.'],
+     ['Verifici respirația și pieptul pentru alte plăgi','Cauți o a doua rană, mai ales la piept și la spate.'],
+     ['Verifici circulația: alte sângerări, pulsul, semne de șoc','Pielea rece și umedă, pulsul rapid și slab înseamnă șoc: el trebuie evacuat repede.'],
+     ['Îl înveli și notezi ora garoului','Hipotermia agravează sângerarea; ora garoului e scrisă pe el pentru medic.']],
+   wrong:['Îi dai apă să bea','Scoți glonțul','Aștepți ambulanța fără să faci nimic','Speli rana cu apă']},
+  {t:'Plagă la piept',s:'După o explozie, un rănit are o rană mică pe partea stângă a pieptului care face bule când respiră. Respiră greu și repede. Nu sângerează abundent nicăieri.',
+   steps:[['Ieși din pericol și verifici sângerările masive','Ordinea rămâne: pericolul, apoi sângerarea masivă. Aici nu există.'],
+     ['Căile aeriene: libere, rănitul vorbește greu dar vorbește','Dacă vorbește, căile aeriene sunt deschise.'],
+     ['Pansament ocluziv (etanș) peste plaga de la piept','O plagă care „suflă” se închide cu un pansament etanș, ca aerul să nu intre în piept.'],
+     ['Cauți plaga de ieșire, pe spate','Un proiectil poate ieși pe spate: și acolo pui pansament etanș.'],
+     ['Îl supraveghezi: dacă respirația se agravează, anunți medicul imediat','Respirația tot mai grea după pansament e un semnal de urgență pentru echipa medicală.'],
+     ['Îl înveli și îl pregătești pentru evacuare','Căldura și evacuarea rapidă.']],
+   wrong:['Pui garou pe braț','Îl întinzi pe spate și îi ridici picioarele','Îi dai un calmant','Bandajezi strâns tot pieptul']},
+  {t:'Rănit inconștient',s:'Găsești un om căzut, inconștient, cu o sângerare mare la antebraț. Respiră, dar zgomotos, cu un sforăit.',
+   steps:[['Te asiguri că locul e sigur și suni la 112','Siguranța ta întâi; în viața civilă, apelul la 112 cât mai devreme.'],
+     ['Garou pe braț, deasupra rănii, strâns până se oprește sângerarea','Sângerarea masivă vine înaintea respirației în MARCH.'],
+     ['Deschizi căile aeriene: capul pe spate, bărbia sus, sau poziția laterală','Sforăitul înseamnă căi aeriene parțial blocate; poziția laterală de siguranță le ține deschise.'],
+     ['Verifici respirația și pieptul','Uiți-te, asculți, simți: respiră? Ritmul e normal?'],
+     ['Verifici circulația și alte sângerări','Treci cu mâinile peste tot corpul, căutând sânge.'],
+     ['Îl înveli și rămâi cu el până vine ajutorul','Nu-l lași singur; îi urmărești respirația.']],
+   wrong:['Îl scuturi ca să se trezească','Îi dai apă','Îl ridici în picioare','Pleci să cauți ajutor fără să suni']},
+];
+tool('tccc',{t:'Simulator TCCC',d:'Un rănit, un cronometru, pașii MARCH în ordine',ic:'aid',g:'corp',run(h){
+  const sc=pick(TCCC);let i=0,err=0,t0=0,raf=0;
+  const step=()=>{const [ok,why]=sc.steps[i];const opts=shuffle([ok,...shuffle(sc.wrong.concat(sc.steps.filter((_,k)=>k>i).map(x=>x[0]))).slice(0,3)]);
+    h.innerHTML=`<div class="stage tc"><div class="row"><span class="pill">${i+1} / ${sc.steps.length}</span><span class="sp"></span><b class="tc-t" id="tct">0,0 s</b></div>
+      ${i===0?`<div class="tc-sc"><b>${esc(sc.t)}</b><p>${esc(sc.s)}</p></div>`:''}
+      <p class="tc-q">${i===0?'Ce faci primul?':'Și acum?'}</p><div class="tc-o">${opts.map(o=>`<button class="opt" data-ok="${o===ok?1:0}">${esc(o)}</button>`).join('')}</div><div class="why hide" id="tcw"></div></div>`;
+    $$('.tc-o .opt',h).forEach(b=>b.onclick=()=>{if(b.dataset.ok==='1'){b.classList.add('y');const w=$('#tcw',h);w.innerHTML='<b class="ac">Corect.</b> '+esc(why);w.classList.remove('hide');beep(1200,.08,.3,'sine');
+        $$('.tc-o .opt',h).forEach(x=>x.disabled=true);setTimeout(()=>{i++;if(i<sc.steps.length)step();else end()},1300)}
+      else{b.classList.add('n');b.disabled=true;err++;beep(160,.18,.4,'square')}});
+  };
+  const loop=()=>{const e=$('#tct',h);if(e)e.textContent=((performance.now()-t0)/1000).toFixed(1).replace('.',',')+' s';if(h.isConnected)raf=requestAnimationFrame(loop)};
+  const end=()=>{cancelAnimationFrame(raf);const s=(performance.now()-t0)/1000,score=Math.max(0,100-err*12-Math.max(0,s-40));const best=S.scores.tccc||0;if(score>best){S.scores.tccc=Math.round(score);save('scores')}
+    logSession('TCCC',Math.max(1,s/60),`Simulator TCCC: ${sc.t}, ${err} greșeli, ${s.toFixed(0)} s`);
+    h.innerHTML=`<div class="card hl ctr"><small class="mu">Scenariu încheiat</small><div class="big">${Math.round(score)}</div><p>${esc(sc.t)} · ${err?plural(err,'greșeală','greșeli'):'fără greșeli'} · ${s.toFixed(0)} s${best?` · cel mai bun: ${best}`:''}</p>
+      <p class="mu" style="font-size:.9rem">Ordinea MARCH: sângerarea masivă, căile aeriene, respirația, circulația, hipotermia și capul. Pentru practică reală: un curs de prim ajutor sau Stop the Bleed.</p><button class="btn mt" data-again>Alt scenariu</button></div>`;
+    $('[data-again]',h).onclick=()=>TOOLS.tccc.run(h)};
+  h.innerHTML=`<div class="card"><p style="margin-top:0">Primești un rănit și alegi pașii în ordinea corectă, contra cronometru. Fiecare greșeală scade din scor. E un exercițiu de memorie a ordinii, după ghidurile publice TCCC și Stop the Bleed, nu un curs medical.</p><button class="btn lg blk" data-go-tc>${ic('play','s')} Începe scenariul</button></div>`;
+  $('[data-go-tc]',h).onclick=()=>{t0=performance.now();step();loop()};
+  return ()=>cancelAnimationFrame(raf);
+}});
+
+/* ───────────── jocul de navigație ───────────── */
+TGROUPS.push(['nav','Navigație']);
+tool('navj',{t:'Joc de navigație',d:'Azimut, distanță, pași numărați și relieful',ic:'compass',g:'nav',run(h){
+  const c=S.set.navj=Object.assign({pace:62,mode:'az'},S.set.navj);
+  const draw=()=>{
+    if(c.mode==='rel')return relief();
+    const ax=40+Math.random()*60,ay=180+Math.random()*40,az=Math.round(20+Math.random()*320),dist=Math.round(150+Math.random()*650);
+    const k=0.32,bx=ax+Math.sin(az*Math.PI/180)*dist*k,by=ay-Math.cos(az*Math.PI/180)*dist*k;
+    const fx=clamp(bx,20,300),fy=clamp(by,20,280),dx=(fx-ax)/k,dy=(ay-fy)/k,trueAz=Math.round(((Math.atan2(dx,dy)*180/Math.PI)+360)%360),trueD=Math.round(Math.hypot(dx,dy)/10)*10;
+    const pace=Math.round(trueD/100*c.pace);
+    const azOpts=shuffle([trueAz,(trueAz+40)%360,(trueAz+320)%360,(trueAz+180)%360]),dOpts=shuffle([trueD,Math.round(trueD*1.4/10)*10,Math.round(trueD*.6/10)*10,Math.round(trueD*.8/10)*10]);
+    const contours=Array.from({length:7},(_,i)=>`<ellipse cx="${200+i*3}" cy="${120-i*2}" rx="${120-i*16}" ry="${70-i*9}" class="nv-c"/>`).join('');
+    h.innerHTML=`<div class="card"><svg viewBox="0 0 320 300" class="nvmap">${contours}${Array.from({length:7},(_,i)=>`<line x1="${i*50+10}" y1="0" x2="${i*50+10}" y2="300" class="nv-g"/><line x1="0" y1="${i*50+10}" x2="320" y2="${i*50+10}" class="nv-g"/>`).join('')}
+      <path d="M302 8l7 20-7-5-7 5Z" class="nv-n"/><text x="302" y="42" class="nv-t" text-anchor="middle">N</text>
+      <line x1="16" y1="286" x2="${16+100*k}" y2="286" class="nv-s"/><text x="16" y="280" class="nv-t">100 m</text>
+      <circle cx="${ax}" cy="${ay}" r="7" class="nv-a"/><text x="${ax+10}" y="${ay+4}" class="nv-t">START</text>
+      <path d="M${fx} ${fy-10}l9 16h-18Z" class="nv-b"/><text x="${fx+12}" y="${fy+4}" class="nv-t">ȚINTA</text>
+      <line id="nvl" x1="${ax}" y1="${ay}" x2="${ax}" y2="${ay}" class="nv-l"/></svg>
+      <p class="tc-q" id="nvq">1. Ce azimut are ținta față de start?</p><div class="tc-o" id="nvo">${azOpts.map(a=>`<button class="opt" data-v="${a}">${a}°</button>`).join('')}</div><div class="why hide" id="nvw"></div></div>`;
+    let stage=0,ok=0;const opts=$('#nvo',h),q=$('#nvq',h),w=$('#nvw',h);
+    const bind=()=>$$('#nvo .opt',h).forEach(b=>b.onclick=()=>{
+      const v=+b.dataset.v,right=stage===0?v===trueAz:v===trueD;b.classList.add(right?'y':'n');if(right)ok++;
+      if(stage===0){w.innerHTML=(right?'<b class="ac">Corect.</b> ':'<b style="color:var(--bad)">Nu.</b> ')+`Azimutul e ${trueAz}°: unghiul de la nord, în sensul acelor de ceasornic.`;w.classList.remove('hide');stage=1;
+        setTimeout(()=>{q.textContent='2. Cât de departe e, după scara hărții?';opts.innerHTML=dOpts.map(d=>`<button class="opt" data-v="${d}">${d} m</button>`).join('');bind()},900)}
+      else{const ln=$('#nvl',h);ln.animate([{x2:ax,y2:ay},{x2:fx,y2:fy}],{duration:900,fill:'forwards'});ln.setAttribute('x2',fx);ln.setAttribute('y2',fy);
+        w.innerHTML=(right?'<b class="ac">Corect.</b> ':'<b style="color:var(--bad)">Nu.</b> ')+`${trueD} m. Cu pasul tău (${c.pace} de pași dubli la 100 m) înseamnă cam <b>${pace} de pași dubli</b>. Numeri doar pasul piciorului stâng.`;
+        opts.innerHTML=`<button class="btn" data-again>Următoarea țintă</button>`;$('[data-again]',h).onclick=draw;logSession('Navigație',2,`Joc de navigație: ${ok}/2, azimut ${trueAz}°, ${trueD} m`)}});
+    bind();
+  };
+  const RELIEF=[['Deal (vârf)','Cercuri închise, una în alta: terenul urcă spre centru.',i=>`<ellipse cx="160" cy="120" rx="${120-i*18}" ry="${80-i*12}" class="nv-c"/>`],
+    ['Vale','Curbele fac un „V” care arată în sus, spre deal: apa curge pe fundul văii, în sens opus vârfului.',i=>`<path d="M${30+i*16} 20Q160 ${200-i*14} ${290-i*16} 20" class="nv-c"/>`],
+    ['Creastă (pinten)','Curbele fac un „U” sau un „V” care arată în jos, spre teren mai jos: un bot de deal.',i=>`<path d="M${30+i*16} 230Q160 ${40+i*16} ${290-i*16} 230" class="nv-c"/>`],
+    ['Șa','Două dealuri unul lângă altul: între ele, un loc mai jos, ca o șa de cal.',i=>`<ellipse cx="90" cy="120" rx="${70-i*12}" ry="${55-i*9}" class="nv-c"/><ellipse cx="230" cy="120" rx="${70-i*12}" ry="${55-i*9}" class="nv-c"/>`],
+    ['Pantă abruptă','Curbe foarte apropiate: urcă mult pe o distanță mică.',i=>`<line x1="20" y1="${60+i*9}" x2="300" y2="${80+i*9}" class="nv-c"/>`]];
+  const relief=()=>{const r=pick(RELIEF),opts=shuffle(RELIEF.map(x=>x[0])).slice(0,4);if(!opts.includes(r[0]))opts[0]=r[0];
+    h.innerHTML=`<div class="card"><svg viewBox="0 0 320 240" class="nvmap">${Array.from({length:5},(_,i)=>r[2](i)).join('')}</svg><p class="tc-q">Ce formă de relief arată curbele de nivel?</p><div class="tc-o">${shuffle(opts).map(o=>`<button class="opt" data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div><div class="why hide" id="nvw"></div><button class="btn mt hide" data-again>Următoarea</button></div>`;
+    $$('.tc-o .opt',h).forEach(b=>b.onclick=()=>{const right=b.dataset.v===r[0];b.classList.add(right?'y':'n');const w=$('#nvw',h);w.innerHTML=(right?'<b class="ac">Corect.</b> ':`<b style="color:var(--bad)">Nu, e ${esc(r[0].toLowerCase())}.</b> `)+esc(r[1]);w.classList.remove('hide');$('[data-again]',h).classList.remove('hide')});
+    $('[data-again]',h).onclick=relief};
+  h.innerHTML='';
+  const wrap=document.createElement('div');
+  const head=`${segHTML('nvm',[['az','Azimut și distanță'],['rel','Relieful']],c.mode)}<div class="cfg mt">${stepperHTML('pace','Pașii tăi dubli la 100 m (numără-i o dată pe un teren plat)',c.pace)}</div><div id="nvb" class="mt"></div>`;
+  wrap.innerHTML=head;h.appendChild(wrap);
+  const body=$('#nvb',h);h=body;
+  bindSeg(wrap,'nvm',k=>{c.mode=k;save('set');draw()});
+  bindSteppers(wrap,c,{pace:{min:40,max:90,step:1}},()=>save('set'));
+  draw();
+}});
+
+/* ───────────── graficul cronometrului cu microfon ───────────── */
+if(TOOLS.shot){const _run=TOOLS.shot.run;TOOLS.shot.run=function(h){const clean=_run(h);
+  const xs=S.log.filter(e=>/primul la ([\d.]+) s/.test(e.note||'')).slice(0,20).reverse().map(e=>({d:e.d,v:+e.note.match(/primul la ([\d.]+) s/)[1]}));
+  if(xs.length>1){const max=Math.max(...xs.map(x=>x.v)),min=Math.min(...xs.map(x=>x.v)),span=Math.max(.1,max-min);
+    const pts=xs.map((x,i)=>`${(10+i*(300/(xs.length-1))).toFixed(1)},${(90-(x.v-min)/span*70).toFixed(1)}`).join(' ');
+    const card=document.createElement('div');card.className='card mt';card.innerHTML=`<small class="mu">Primul foc, ultimele ${xs.length} sesiuni (mai jos e mai bine)</small>
+      <svg viewBox="0 0 320 100" class="shotc"><polyline points="${pts}" class="sc-l"/>${xs.map((x,i)=>`<circle cx="${(10+i*(300/(xs.length-1))).toFixed(1)}" cy="${(90-(x.v-min)/span*70).toFixed(1)}" r="3" class="${x.v===min?'sc-b':'sc-d'}"/>`).join('')}</svg>
+      <p class="mu" style="margin:0;font-size:.9rem">Cel mai bun: <b class="ac">${min.toFixed(2).replace('.',',')} s</b> · ultimul: ${xs[xs.length-1].v.toFixed(2).replace('.',',')} s</p>`;
+    h.appendChild(card)}
+  return clean}}
+
+/* ───────────── legăturile cu ecranele existente ───────────── */
+const _render=render;
+render=function(){_render();
+  const h=(location.hash||'#/azi').replace(/^#\/?/,''),main=$('#main');if(!main)return;
+  if(h==='azi'){const hero=$('.hero',main);if(hero){hero.insertAdjacentHTML('afterend',opordHTML());opordMount(main)}const sec=$$('.sec',main).find(x=>/Rutina rapid/.test(x.textContent));if(sec)sec.insertAdjacentHTML('beforebegin',radarHTML())}
+  if(h==='lectii'){const v=$('.view',main);const first=v&&v.firstElementChild;if(first){first.insertAdjacentHTML('afterend',opsMapHTML());const grid=$('.gridv',main);if(grid)grid.insertAdjacentHTML('afterend',patchWallHTML())}}
+  patchCheck();
+};
+nvgApply();
 
 /* 990-init.js */
 /* pornire */
@@ -6706,7 +7064,8 @@ introStart();
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)&&!/localhost|127\.0\.0\.1/.test(location.hostname)){
   const hadCtl=!!navigator.serviceWorker.controller;let reloaded=false;
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadCtl&&!reloaded){reloaded=true;location.reload()}});
-  navigator.serviceWorker.register('sw.js').catch(()=>{});
+  const reg=navigator.serviceWorker.register('sw.js');reg.catch(()=>{});
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')reg.then(r=>r.update()).catch(()=>{})});
 }
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&WL===null){}});
 </script>
